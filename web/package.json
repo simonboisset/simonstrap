@@ -13,7 +13,7 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-scripts": "4.0.0",
-    "simon-ui": "^0.1.32",
+    "simon-ui": "file:.yalc/simon-ui",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4"
   },

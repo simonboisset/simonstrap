@@ -8,15 +8,18 @@ export const AppBar: React.FC<{
 }> = ({ title, leftElements, rigthElements }) => {
   const classes = useStyles();
   return (
-    <AppBarMUI position="fixed" className={classes.appBar}>
-      <Toolbar>
-        {leftElements}
-        <div className={classes.title}>
-          <Typography variant="h6">{title}</Typography>
-        </div>
-        {rigthElements}
-      </Toolbar>
-    </AppBarMUI>
+    <>
+      <AppBarMUI position="fixed" className={classes.appBar}>
+        <Toolbar>
+          {leftElements}
+          <Typography className={classes.title} variant="h6">
+            {title}
+          </Typography>
+          {rigthElements}
+        </Toolbar>
+      </AppBarMUI>
+      <Toolbar />
+    </>
   );
 };
 const useStyles = makeStyles(({ zIndex }) => ({

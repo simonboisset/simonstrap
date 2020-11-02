@@ -1,16 +1,25 @@
 import React from "react";
-import { AppBar, IconButton, Page } from "simon-ui";
-import "./App.css";
+import { PageRouter, ThemeProvider } from "simon-ui";
+import { Header } from "./components/Header";
+import { NavBar } from "./components/NavBar";
 function App() {
   return (
-    <div className="App">
-      <AppBar
-        leftElements={<IconButton>menu</IconButton>}
-        rigthElements={<IconButton>home</IconButton>}
-        title="Simon UI v2"
+    <ThemeProvider theme={{}}>
+      <PageRouter
+        header={<Header />}
+        drawer={<NavBar />}
+        routes={[
+          {
+            path: "/",
+            component: <div>Home</div>,
+            routes: [
+              { path: "/test", component: <div>Test</div> },
+              { path: "/button", component: <div>Button</div> },
+            ],
+          },
+        ]}
       />
-      <Page></Page>
-    </div>
+    </ThemeProvider>
   );
 }
 export default App;
