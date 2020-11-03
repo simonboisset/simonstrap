@@ -1,6 +1,8 @@
 import * as yup from 'yup';
+export { Divider } from '@material-ui/core';
 export { useFormContext, useWatch } from 'react-hook-form';
 export * from './components/AppBar';
+export * from './components/Button';
 export * from './components/Drawer';
 export * from './components/Form';
 export * from './components/IconButton';
@@ -10,6 +12,7 @@ export * from './components/Item';
 export * from './components/Page';
 export * from './components/PageRouter';
 export * from './components/Router';
+export * from './components/Text';
 export * from './components/ThemeProvider';
 export * from './utils/useForm';
 export { yup };
