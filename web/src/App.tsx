@@ -2,6 +2,7 @@ import React from "react";
 import { PageRouter, ThemeProvider } from "simon-ui";
 import { Header } from "./components/Header";
 import { NavBar } from "./components/NavBar";
+import { FormPage } from "./pages/FormPage";
 function App() {
   return (
     <ThemeProvider theme={{}}>
@@ -15,6 +16,7 @@ function App() {
             routes: [
               { path: "/test", component: <div>Test</div> },
               { path: "/button", component: <div>Button</div> },
+              { path: "/form", component: <FormPage /> },
             ],
           },
         ]}

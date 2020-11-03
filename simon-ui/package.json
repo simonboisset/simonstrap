@@ -51,6 +51,7 @@
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "@types/react-router-dom": "^5.1.6",
+    "@types/yup": "^0.29.9",
     "husky": "^4.3.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
@@ -60,8 +61,10 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
+    "@hookform/resolvers": "^1.0.0",
     "@material-ui/core": "^4.11.0",
     "history": "^5.0.0",
-    "react-hook-form": "^6.9.6"
+    "react-hook-form": "^6.9.6",
+    "yup": "^0.29.3"
   }
 }

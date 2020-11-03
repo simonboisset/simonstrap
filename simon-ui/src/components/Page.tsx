@@ -8,7 +8,7 @@ export const Page: React.FC<{ header?: JSX.Element; drawer?: JSX.Element }> = ({
     <>
       {header}
       {drawer}
-      <Grid container xs={12} className={classes.page}>
+      <Grid container className={classes.page}>
         {children}
       </Grid>
     </>

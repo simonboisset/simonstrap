@@ -10,9 +10,9 @@ export const Form: React.FC<{
   const classes = useStyles();
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Grid container className={classes.form} justify="center">
-          <Grid container item xs={xs ? xs : 4}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className={classes.form}>
+        <Grid container justify="center">
+          <Grid container item xs={xs ? xs : 12}>
             {children}
           </Grid>
         </Grid>
@@ -20,8 +20,8 @@ export const Form: React.FC<{
     </FormProvider>
   );
 };
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(() => ({
   form: {
-    padding: spacing(2)
+    width: '100%'
   }
 }));

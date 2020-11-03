@@ -7,15 +7,10 @@ export const NavBar = () => {
       <Item icon="home" onClick={() => history.push("/")}>
         Home
       </Item>
-      <Item icon="home" onClick={() => history.push("/test")}>
-        Test
-      </Item>
-      <Item icon="home" onClick={() => history.push("/button")}>
-        Button
-      </Item>
-      <Item icon="home" onClick={() => history.push("/button2")}>
-        Button
-      </Item>
+      <Item onClick={() => history.push("/test")}>Test</Item>
+      <Item onClick={() => history.push("/button")}>Button</Item>
+      <Item onClick={() => history.push("/form")}>Form</Item>
+      <Item onClick={() => history.push("/modal")}>Modal</Item>
     </Drawer>
   );
 };
