@@ -17,7 +17,8 @@
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "write": "yarn prettier --write ."
+    "write": "yarn prettier --write .",
+    "check": "yarn prettier --check ."
   },
   "peerDependencies": {
     "react": "^16.8.0",
@@ -25,7 +26,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "yarn write"
     }
   },
   "prettier": {
