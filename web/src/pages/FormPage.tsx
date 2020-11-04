@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, IconButton, InputText, Text, useForm, yup } from "simon-ui";
+import { Button, Form, InputText, Text, useForm, yup } from "simon-ui";
 
 const FormSchema = yup.object().shape({
   name: yup.string().required(),
@@ -16,7 +16,9 @@ export const FormPage = () => {
       </Text>
       <InputText name="name" label="Name" spaceBelow />
       <InputText name="age" label="Age" spaceBelow />
-      <IconButton type="submit">send</IconButton>
+      <Button variant="contained" type="submit" color="primary">
+        Submit
+      </Button>
     </Form>
   );
 };
