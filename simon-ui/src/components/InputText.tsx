@@ -32,6 +32,6 @@ export const InputText: React.FC<{
 };
 export const useSpaces = makeStyles<Theme, { spaceBelow?: boolean }, 'space'>(({ spacing }) => ({
   space: {
-    paddingBottom: props => (props.spaceBelow ? spacing(2) : 0)
-  }
+    paddingBottom: (props) => (props.spaceBelow ? spacing(2) : 0),
+  },
 }));

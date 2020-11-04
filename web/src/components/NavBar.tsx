@@ -11,6 +11,7 @@ export const NavBar = () => {
       <Item onClick={() => history.push("/button")}>Button</Item>
       <Item onClick={() => history.push("/form")}>Form</Item>
       <Item onClick={() => history.push("/modal")}>Modal</Item>
+      <Item onClick={() => history.push("/router")}>Router</Item>
     </Drawer>
   );
 };

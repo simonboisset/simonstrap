@@ -15,14 +15,14 @@ export const InputSelect: React.FC<{
   return (
     <Grid item xs={xs ? xs : 12}>
       <Controller
-        render={props => (
+        render={(props) => (
           <FormControl variant="outlined" fullWidth>
             <InputLabel>{label}</InputLabel>
             <Select value={props.value} onChange={props.onChange} label={label} error={!!errors[name]}>
               <MenuItem value={undefined} disabled>
                 {label}
               </MenuItem>
-              {items.map(item => (
+              {items.map((item) => (
                 <MenuItem key={item.value} value={item.value}>
                   {item.icon && <Icon>{item.icon}</Icon>}
                   {item.name}

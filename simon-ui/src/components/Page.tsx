@@ -1,21 +1,31 @@
-import { Grid, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import { drawerWidth } from './Drawer';
 
-export const Page: React.FC<{ header?: JSX.Element; drawer?: JSX.Element }> = ({ children, header, drawer }) => {
+export const Page = ({
+  header,
+  drawer,
+  children,
+}: {
+  header?: JSX.Element;
+  drawer?: JSX.Element;
+  children: React.ReactNode;
+}) => {
   const classes = useStyles();
   return (
     <>
       {header}
       {drawer}
-      <Grid container className={classes.page}>
-        {children}
-      </Grid>
+      <div className={classes.page}>{children}</div>
     </>
   );
 };
-const useStyles = makeStyles(() => ({
+
+const useStyles = makeStyles(({ spacing }) => ({
   page: {
-    marginLeft: drawerWidth
-  }
+    marginLeft: drawerWidth + spacing(2),
+    marginBottom: spacing(2),
+    marginTop: spacing(2),
+    marginRight: spacing(2),
+  },
 }));

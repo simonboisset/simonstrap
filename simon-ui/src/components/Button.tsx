@@ -6,5 +6,5 @@ export const Button: ExtendButtonBase<ButtonTypeMap<{}, 'button'>> = ({ ...props
   return <ButtonUI {...props} className={classes.button} />;
 };
 const useStyles = makeStyles(() => ({
-  button: {}
+  button: {},
 }));

@@ -16,6 +16,6 @@ export const Drawer: React.FC<DrawerProps> = ({ children, ...props }) => {
 };
 const useStyles = makeStyles(() => ({
   drawer: {
-    width: drawerWidth
-  }
+    width: drawerWidth,
+  },
 }));

@@ -1,34 +1,22 @@
-import { makeStyles } from '@material-ui/core';
 import React from 'react';
-import { drawerWidth } from './Drawer';
-import { RouteParam, Router } from './Router';
+import { Router } from '../router/components/Router';
+import { Route } from '../router/types/Route';
+import { Page } from './Page';
 
 export const PageRouter = ({
   header,
   drawer,
-  routes
+  routes,
+  auth,
 }: {
   header?: JSX.Element;
   drawer?: JSX.Element;
-  routes: RouteParam[];
+  routes: Route[];
+  auth?: boolean;
 }) => {
-  const classes = useStyles();
   return (
-    <>
-      {header}
-      {drawer}
-      <div className={classes.page}>
-        <Router routes={routes} />
-      </div>
-    </>
+    <Page header={header} drawer={drawer}>
+      <Router auth={auth} routes={routes} />
+    </Page>
   );
 };
-
-const useStyles = makeStyles(({ spacing }) => ({
-  page: {
-    marginLeft: drawerWidth + spacing(2),
-    marginBottom: spacing(2),
-    marginTop: spacing(2),
-    marginRight: spacing(2)
-  }
-}));

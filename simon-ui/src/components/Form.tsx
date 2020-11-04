@@ -22,6 +22,6 @@ export const Form: React.FC<{
 };
 const useStyles = makeStyles(() => ({
   form: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 }));

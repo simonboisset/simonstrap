@@ -24,9 +24,9 @@ export const AppBar: React.FC<{
 };
 const useStyles = makeStyles(({ zIndex }) => ({
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   appBar: {
-    zIndex: zIndex.drawer + 1
-  }
+    zIndex: zIndex.drawer + 1,
+  },
 }));
