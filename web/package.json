@@ -3,25 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-scripts": "4.0.0",
-    "simon-ui": "^0.1.33",
-    "typescript": "^4.0.3",
+    "simon-ui": "file:.yalc/simon-ui",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "yalc": "yalc add simon-ui",
+    "unyalc": "yalc remove simon-ui",
+    "write": "yarn prettier --write ."
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "printWidth": 120
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +40,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
+    "typescript": "^4.0.3",
+    "yalc": "^1.0.0-pre.45"
   }
 }
