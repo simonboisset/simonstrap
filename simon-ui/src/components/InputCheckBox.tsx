@@ -1,33 +1,55 @@
 import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Grid } from '@material-ui/core';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { renderControlerProps } from './InputSwitch';
+import { useFromStyle } from './InputText';
+import { Run } from './Run';
 
-export type ItemCheckBoxType<T> = { name?: string; value: T; icon?: string };
+export type ItemCheckBoxType = { label?: string; name?: string; icon?: string };
 
 export const InputCheckBox: React.FC<{
   name: string;
   label?: string;
-  items: ItemCheckBoxType<string>[];
+  items: ItemCheckBoxType[];
+  spaceBelow?: boolean;
+  spaceAfter?: boolean;
   xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-}> = ({ name, label, items, xs }) => {
+  direction?: 'horizontal' | 'vertical';
+}> = ({ name, label, items, xs, direction = 'horizontal', spaceBelow, spaceAfter }) => {
   const { errors, control } = useFormContext();
-
+  const classes = useFromStyle({ direction, spaceBelow, spaceAfter });
+  const itemChange = (index: number, value: boolean, props: renderControlerProps, item: ItemCheckBoxType) => {
+    const nextValue = [...props.value];
+    nextValue[index] = { ...item, value };
+    props.onChange(nextValue);
+  };
   return (
-    <Grid item xs={xs ? xs : 12}>
+    <Grid item xs={xs ? xs : 12} className={classes.space}>
       <Controller
-        render={(props) => (
-          <FormControl component="fieldset">
-            <FormLabel component="legend">{label}</FormLabel>
-            <FormGroup>
-              {items.map((item) => (
-                <FormControlLabel key={item.value} control={<Checkbox onChange={props.onChange} />} label={item.name} />
-              ))}
-            </FormGroup>
-            <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
-          </FormControl>
-        )}
+        render={(props) =>
+          props.value.length === items.length ? (
+            <FormControl component="fieldset">
+              <FormLabel component="legend">{label}</FormLabel>
+              <FormGroup className={classes.group}>
+                {props.value.map((item: ItemCheckBoxType & { value: boolean }, i: number) => (
+                  <FormControlLabel
+                    key={i}
+                    control={
+                      <Checkbox onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
+                    }
+                    label={item.label}
+                  />
+                ))}
+              </FormGroup>
+              <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
+            </FormControl>
+          ) : (
+            <Run run={() => props.onChange([items.map((item) => ({ ...item, value: false }))])} />
+          )
+        }
         name={name}
         control={control}
+        defaultValue={[items.map((item) => ({ ...item, value: false }))]}
       />
     </Grid>
   );

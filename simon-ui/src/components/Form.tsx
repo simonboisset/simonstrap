@@ -12,7 +12,7 @@ export const Form: React.FC<{
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className={classes.form}>
         <Grid container justify="center">
-          <Grid container item xs={xs ? xs : 12}>
+          <Grid container item xs={xs ? xs : 12} spacing={2}>
             {children}
           </Grid>
         </Grid>

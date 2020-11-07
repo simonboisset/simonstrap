@@ -7,11 +7,12 @@ export const InputText: React.FC<{
   label?: string;
   type?: 'password';
   spaceBelow?: boolean;
+  spaceAfter?: boolean;
   inputProps?: any;
   xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-}> = ({ name, label, type, inputProps, spaceBelow, xs }) => {
+}> = ({ name, label, type, inputProps, spaceAfter, spaceBelow, xs }) => {
   const { errors, control } = useFormContext();
-  const classes = useSpaces({ spaceBelow });
+  const classes = useFromStyle({ spaceBelow, spaceAfter });
   return (
     <Grid item xs={xs ? xs : 12} className={classes.space}>
       <Controller
@@ -30,8 +31,17 @@ export const InputText: React.FC<{
     </Grid>
   );
 };
-export const useSpaces = makeStyles<Theme, { spaceBelow?: boolean }, 'space'>(({ spacing }) => ({
+export const useFromStyle = makeStyles<
+  Theme,
+  { spaceBelow?: boolean; spaceAfter?: boolean; direction?: 'horizontal' | 'vertical' },
+  'space' | 'group'
+>(({ spacing }) => ({
   space: {
     paddingBottom: (props) => (props.spaceBelow ? spacing(2) : 0),
+    paddingRight: (props) => (props.spaceAfter ? spacing(2) : 0),
+  },
+  group: {
+    display: 'flex',
+    flexDirection: (props) => (props.direction === 'horizontal' ? 'row' : 'column'),
   },
 }));

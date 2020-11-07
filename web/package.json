@@ -6,7 +6,7 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-scripts": "4.0.0",
-    "simon-ui": "^0.1.35",
+    "simon-ui": "file:.yalc/simon-ui",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

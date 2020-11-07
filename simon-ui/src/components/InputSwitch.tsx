@@ -1,33 +1,64 @@
 import { FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Grid, Switch } from '@material-ui/core';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { useFromStyle } from './InputText';
+import { Run } from './Run';
 
-export type ItemSwitchType<T> = { name?: string; value: T; icon?: string };
+export type ItemSwitchType = { label?: string; name?: string; icon?: string };
+
+export type renderControlerProps = {
+  onChange: (...event: any[]) => void;
+  onBlur: () => void;
+  value: any;
+  name: string;
+  ref: React.MutableRefObject<any>;
+};
 
 export const InputSwitch: React.FC<{
   name: string;
   label?: string;
-  items: ItemSwitchType<string>[];
+  items: ItemSwitchType[];
+  spaceBelow?: boolean;
+  spaceAfter?: boolean;
+  direction?: 'horizontal' | 'vertical';
   xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-}> = ({ name, label, items, xs }) => {
+}> = ({ name, label, items, xs, spaceAfter, direction = 'horizontal', spaceBelow }) => {
   const { errors, control } = useFormContext();
+  const classes = useFromStyle({ direction, spaceBelow, spaceAfter });
+
+  const itemChange = (index: number, value: boolean, props: renderControlerProps, item: ItemSwitchType) => {
+    const nextValue = [...props.value];
+    nextValue[index] = { ...item, value };
+    props.onChange(nextValue);
+  };
 
   return (
-    <Grid item xs={xs ? xs : 12}>
+    <Grid item xs={xs ? xs : 12} className={classes.space}>
       <Controller
-        render={(props) => (
-          <FormControl component="fieldset">
-            <FormLabel component="legend">{label}</FormLabel>
-            <FormGroup>
-              {items.map((item) => (
-                <FormControlLabel key={item.value} control={<Switch onChange={props.onChange} />} label={item.name} />
-              ))}
-            </FormGroup>
-            <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
-          </FormControl>
-        )}
+        render={(props) =>
+          props.value.length === items.length ? (
+            <FormControl component="fieldset">
+              <FormLabel component="legend">{label}</FormLabel>
+              <FormGroup className={classes.group}>
+                {props.value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
+                  <FormControlLabel
+                    key={i}
+                    control={
+                      <Switch onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
+                    }
+                    label={item.label}
+                  />
+                ))}
+              </FormGroup>
+              <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
+            </FormControl>
+          ) : (
+            <Run run={() => props.onChange([items.map((item) => ({ ...item, value: false }))])} />
+          )
+        }
         name={name}
         control={control}
+        defaultValue={[items.map((item) => ({ ...item, value: false }))]}
       />
     </Grid>
   );
