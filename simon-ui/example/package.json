@@ -5,13 +5,19 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "write": "yarn prettier --write ./src"
   },
   "dependencies": {
     "react": "^16.8.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.0",
     "simon-ui": "^0.1.35"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "printWidth": 120
   },
   "alias": {
     "react": "../node_modules/react",
@@ -22,6 +28,7 @@
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
     "parcel": "^1.12.3",
+    "prettier": "^2.1.2",
     "typescript": "^3.4.5"
   }
 }

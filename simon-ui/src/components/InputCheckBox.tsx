@@ -25,7 +25,7 @@ export const InputCheckBox: React.FC<{
   return (
     <Grid item xs={xs ? xs : 12} className={classes.space}>
       <Controller
-        render={props => (
+        render={(props) => (
           <FormControl component="fieldset">
             <FormLabel component="legend">{label}</FormLabel>
             <FormGroup className={classes.group}>
@@ -44,7 +44,7 @@ export const InputCheckBox: React.FC<{
         )}
         name={name}
         control={control}
-        defaultValue={items.map(item => ({ ...item, value: false }))}
+        defaultValue={items.map((item) => ({ ...item, value: false }))}
       />
     </Grid>
   );

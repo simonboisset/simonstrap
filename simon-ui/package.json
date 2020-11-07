@@ -21,6 +21,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "write": "yarn prettier --write ./src",
+    "write-example": "yarn prettier --write ./example/src && cd example && yarn write && cd ..",
     "check": "yarn prettier --check ./src"
   },
   "peerDependencies": {

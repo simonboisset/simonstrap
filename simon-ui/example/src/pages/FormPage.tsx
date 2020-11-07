@@ -47,8 +47,8 @@ export const FormPage = () => {
       <InputSlider name="poids" label="Poids" xs={8} />
       <InputSwitch name="pets" label="Annimaux" items={pets} />
       <InputCheckBox name="pets" label="Annimaux" items={pets} />
-      <Button variant="contained" type="submit" color="primary" xs={6}>
-        Submit
+      <Button variant="contained" color="secondary" xs={6}>
+        Cancel
       </Button>
       <Button variant="contained" type="submit" color="primary" xs={6}>
         Submit
