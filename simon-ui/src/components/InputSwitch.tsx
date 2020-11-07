@@ -2,7 +2,6 @@ import { FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Gr
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useFromStyle } from './InputText';
-import { Run } from './Run';
 
 export type ItemSwitchType = { label?: string; name?: string; icon?: string };
 
@@ -35,30 +34,26 @@ export const InputSwitch: React.FC<{
   return (
     <Grid item xs={xs ? xs : 12} className={classes.space}>
       <Controller
-        render={(props) =>
-          props.value.length === items.length ? (
-            <FormControl component="fieldset">
-              <FormLabel component="legend">{label}</FormLabel>
-              <FormGroup className={classes.group}>
-                {props.value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
-                  <FormControlLabel
-                    key={i}
-                    control={
-                      <Switch onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
-                    }
-                    label={item.label}
-                  />
-                ))}
-              </FormGroup>
-              <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
-            </FormControl>
-          ) : (
-            <Run run={() => props.onChange([items.map((item) => ({ ...item, value: false }))])} />
-          )
-        }
+        render={props => (
+          <FormControl component="fieldset">
+            <FormLabel component="legend">{label}</FormLabel>
+            <FormGroup className={classes.group}>
+              {props.value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
+                <FormControlLabel
+                  key={i}
+                  control={
+                    <Switch onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
+                  }
+                  label={item.label}
+                />
+              ))}
+            </FormGroup>
+            <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
+          </FormControl>
+        )}
         name={name}
         control={control}
-        defaultValue={[items.map((item) => ({ ...item, value: false }))]}
+        defaultValue={items.map(item => ({ ...item, value: false }))}
       />
     </Grid>
   );
