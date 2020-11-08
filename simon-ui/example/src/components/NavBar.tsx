@@ -12,9 +12,9 @@ export const NavBar = () => {
       <ItemLink to="/router">Router</ItemLink>
       <ItemLink to="/test">Page</ItemLink>
       <ItemLink to="/test">Theme</ItemLink>
+      <ItemLink to="/modal">Modal</ItemLink>
       <Divider />
       <Item onClick={() => history.push('/button')}>Button</Item>
-      <Item onClick={() => history.push('/modal', { user: 'simon' })}>Modal</Item>
       <Item onClick={() => history.push('/ripple')}>Ripple</Item>
     </Drawer>
   );
