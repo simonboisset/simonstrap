@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-export { Divider } from '@material-ui/core';
+export { DialogActions, DialogContent, DialogTitle, Divider } from '@material-ui/core';
 export { useFormContext, useWatch } from 'react-hook-form';
 export { history, Redirect, Route, Router, useURL } from 'react-router-url';
 export * from './components/AppBar';

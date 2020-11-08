@@ -4,7 +4,6 @@ import { Header } from './components/Header';
 import { NavBar } from './components/NavBar';
 import { FormPage } from './pages/FormPage';
 import { ModalPage } from './pages/ModalPage';
-import { RipplePage } from './pages/RipplePage';
 import { RouterPage } from './pages/RouterPage';
 function App() {
   return (
@@ -17,14 +16,12 @@ function App() {
             path: '/',
             component: <div>Home</div>,
             routes: [
-              { path: '/test', component: <div>Test</div> },
-              { path: '/button', component: <Redirect to="/" /> },
+              { path: '/redirect', component: <Redirect to="/" /> },
               { path: '/form', component: <FormPage /> },
               { path: '/router', component: <RouterPage /> },
               { path: '/modal', component: <ModalPage /> },
               { path: '/menu', component: <RouterPage /> },
               { path: '/router', component: <RouterPage /> },
-              { path: '/ripple', component: <RipplePage /> },
             ],
           },
         ]}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Divider, Drawer, history, Item, ItemLink } from 'simon-ui';
+import { Divider, Drawer, ItemLink } from 'simon-ui';
 
 export const NavBar = () => {
   return (
@@ -10,12 +10,10 @@ export const NavBar = () => {
       <Divider />
       <ItemLink to="/form">Form</ItemLink>
       <ItemLink to="/router">Router</ItemLink>
-      <ItemLink to="/test">Page</ItemLink>
-      <ItemLink to="/test">Theme</ItemLink>
+      <ItemLink to="/redirect">Redirect</ItemLink>
+      <ItemLink to="/page">Page</ItemLink>
+      <ItemLink to="/theme">Theme</ItemLink>
       <ItemLink to="/modal">Modal</ItemLink>
-      <Divider />
-      <Item onClick={() => history.push('/button')}>Button</Item>
-      <Item onClick={() => history.push('/ripple')}>Ripple</Item>
     </Drawer>
   );
 };

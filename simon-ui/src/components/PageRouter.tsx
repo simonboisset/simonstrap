@@ -6,7 +6,7 @@ export const PageRouter = ({
   header,
   drawer,
   routes,
-  auth
+  auth,
 }: {
   header?: JSX.Element;
   drawer?: JSX.Element;
