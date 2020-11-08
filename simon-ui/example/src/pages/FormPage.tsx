@@ -11,6 +11,7 @@ import {
   InputText,
   Text,
   useForm,
+  useURL,
   yup,
 } from 'simon-ui';
 
@@ -36,6 +37,7 @@ const pets = [
 
 export const FormPage = () => {
   const methods = useForm(FormSchema);
+  const { params } = useURL();
   return (
     <Form methods={methods} onSubmit={() => {}}>
       <Text variant="h3">Formulaire</Text>
@@ -47,6 +49,8 @@ export const FormPage = () => {
       <InputSlider name="poids" label="Poids" xs={8} />
       <InputSwitch name="pets" label="Annimaux" items={pets} />
       <InputCheckBox name="pets" label="Annimaux" items={pets} />
+      <InputCheckBox name="conditions" label="J'accepte les condition générales" />
+      <InputSwitch name="conditions" label="J'accepte les condition générales" />
       <Button variant="contained" color="secondary" xs={6}>
         Cancel
       </Button>

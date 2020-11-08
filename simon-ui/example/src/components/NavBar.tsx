@@ -1,23 +1,20 @@
 import * as React from 'react';
-import { Divider, Drawer, history, Item } from 'simon-ui';
+import { Divider, Drawer, history, Item, ItemLink } from 'simon-ui';
 
 export const NavBar = () => {
   return (
     <Drawer variant="permanent">
-      <Item icon="home" onClick={() => history.push('/')}>
+      <ItemLink icon="home" to="/">
         Home
-      </Item>
+      </ItemLink>
       <Divider />
-      <Item onClick={() => history.push('/test')}>Form</Item>
-      <Item onClick={() => history.push('/test')}>Router</Item>
-      <Item onClick={() => history.push('/test')}>Page</Item>
-      <Item onClick={() => history.push('/test')}>Theme</Item>
+      <ItemLink to="/form">Form</ItemLink>
+      <ItemLink to="/router">Router</ItemLink>
+      <ItemLink to="/test">Page</ItemLink>
+      <ItemLink to="/test">Theme</ItemLink>
       <Divider />
-      <Item onClick={() => history.push('/test')}>Test</Item>
       <Item onClick={() => history.push('/button')}>Button</Item>
-      <Item onClick={() => history.push('/form')}>Form</Item>
-      <Item onClick={() => history.push('/modal')}>Modal</Item>
-      <Item onClick={() => history.push('/router')}>Router</Item>
+      <Item onClick={() => history.push('/modal', { user: 'simon' })}>Modal</Item>
       <Item onClick={() => history.push('/ripple')}>Ripple</Item>
     </Drawer>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Router } from '../router/components/Router';
-import { Route } from '../router/types/Route';
+import { Route, Router, useURL } from 'react-router-url';
 import { Page } from './Page';
 
 export const PageRouter = ({
@@ -14,9 +13,11 @@ export const PageRouter = ({
   routes: Route[];
   auth?: boolean;
 }) => {
+  const { params } = useURL();
   return (
     <Page header={header} drawer={drawer}>
       <Router auth={auth} routes={routes} />
+      {params.user}
     </Page>
   );
 };

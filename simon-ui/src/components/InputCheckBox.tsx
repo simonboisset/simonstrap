@@ -9,7 +9,7 @@ export type ItemCheckBoxType = { label?: string; name?: string; icon?: string };
 export const InputCheckBox: React.FC<{
   name: string;
   label?: string;
-  items: ItemCheckBoxType[];
+  items?: ItemCheckBoxType[];
   spaceBelow?: boolean;
   spaceAfter?: boolean;
   xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
@@ -27,24 +27,33 @@ export const InputCheckBox: React.FC<{
       <Controller
         render={(props) => (
           <FormControl component="fieldset">
-            <FormLabel component="legend">{label}</FormLabel>
-            <FormGroup className={classes.group}>
-              {props.value.map((item: ItemCheckBoxType & { value: boolean }, i: number) => (
-                <FormControlLabel
-                  key={i}
-                  control={
-                    <Checkbox onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
-                  }
-                  label={item.label}
-                />
-              ))}
-            </FormGroup>
+            {items ? (
+              <>
+                <FormLabel component="legend">{label}</FormLabel>
+                <FormGroup className={classes.group}>
+                  {props.value.map((item: ItemCheckBoxType & { value: boolean }, i: number) => (
+                    <FormControlLabel
+                      key={i}
+                      control={
+                        <Checkbox onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
+                      }
+                      label={item.label}
+                    />
+                  ))}
+                </FormGroup>
+              </>
+            ) : (
+              <FormControlLabel
+                control={<Checkbox onChange={(_, checked) => props.onChange(checked)} checked={props.value} />}
+                label={label}
+              />
+            )}
             <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
           </FormControl>
         )}
         name={name}
         control={control}
-        defaultValue={items.map((item) => ({ ...item, value: false }))}
+        defaultValue={items ? items.map((item) => ({ ...item, value: false })) : false}
       />
     </Grid>
   );

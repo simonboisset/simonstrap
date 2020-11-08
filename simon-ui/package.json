@@ -79,6 +79,7 @@
     "@material-ui/pickers": "^3.2.10",
     "dayjs": "^1.9.5",
     "react-hook-form": "^6.9.6",
+    "react-router-url": "^0.2.9",
     "yup": "^0.29.3"
   }
 }

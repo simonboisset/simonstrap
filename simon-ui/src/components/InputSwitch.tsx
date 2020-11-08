@@ -16,7 +16,7 @@ export type renderControlerProps = {
 export const InputSwitch: React.FC<{
   name: string;
   label?: string;
-  items: ItemSwitchType[];
+  items?: ItemSwitchType[];
   spaceBelow?: boolean;
   spaceAfter?: boolean;
   direction?: 'horizontal' | 'vertical';
@@ -36,24 +36,34 @@ export const InputSwitch: React.FC<{
       <Controller
         render={(props) => (
           <FormControl component="fieldset">
-            <FormLabel component="legend">{label}</FormLabel>
-            <FormGroup className={classes.group}>
-              {props.value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
-                <FormControlLabel
-                  key={i}
-                  control={
-                    <Switch onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
-                  }
-                  label={item.label}
-                />
-              ))}
-            </FormGroup>
+            {items ? (
+              <>
+                <FormLabel component="legend">{label}</FormLabel>
+                <FormGroup className={classes.group}>
+                  {props.value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
+                    <FormControlLabel
+                      key={i}
+                      control={
+                        <Switch onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
+                      }
+                      label={item.label}
+                    />
+                  ))}
+                </FormGroup>
+              </>
+            ) : (
+              <FormControlLabel
+                control={<Switch onChange={(_, checked) => props.onChange(checked)} checked={props.value} />}
+                label={label}
+              />
+            )}
+
             <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
           </FormControl>
         )}
         name={name}
         control={control}
-        defaultValue={items.map((item) => ({ ...item, value: false }))}
+        defaultValue={items ? items.map((item) => ({ ...item, value: false })) : false}
       />
     </Grid>
   );
