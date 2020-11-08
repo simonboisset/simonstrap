@@ -14,7 +14,9 @@ import {
   InputSwitch,
   InputText,
   Modal,
+  Text,
   useForm,
+  useModalURL,
   yup,
 } from 'simon-ui';
 
@@ -39,18 +41,15 @@ const pets = [
 ];
 
 export const ModalPage = () => {
-  const [open, setOpen] = React.useState(false);
+  // const { open, openModal, closeModal } = useModal('form-modal');
+  const { open, openModal, closeModal } = useModalURL('/modal/open');
   const methods = useForm(FormSchema);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
+
   return (
-    <div>
-      <Button onClick={handleOpen}>Open</Button>
-      <Modal open={open} onClose={handleClose}>
+    <Container>
+      <Text variant="h3">Modal</Text>
+      <Button onClick={openModal}>Open</Button>
+      <Modal open={open} onClose={closeModal}>
         <Form methods={methods} onSubmit={() => {}}>
           <DialogTitle>Formulaire</DialogTitle>
           <DialogContent>
@@ -68,7 +67,7 @@ export const ModalPage = () => {
             </Container>
           </DialogContent>
           <DialogActions>
-            <Button variant="contained" color="secondary" xs={4} onClick={handleClose}>
+            <Button variant="contained" color="secondary" xs={4} onClick={closeModal}>
               Cancel
             </Button>
             <Button variant="contained" type="submit" color="primary" xs={4}>
@@ -77,6 +76,6 @@ export const ModalPage = () => {
           </DialogActions>
         </Form>
       </Modal>
-    </div>
+    </Container>
   );
 };

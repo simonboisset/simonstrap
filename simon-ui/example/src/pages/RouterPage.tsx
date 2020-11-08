@@ -1,13 +1,22 @@
 import * as React from 'react';
-import { Button, history, Router } from 'simon-ui';
+import { Button, Container, history, Router, Text } from 'simon-ui';
 
 export const RouterPage = () => {
   return (
-    <div>
-      <Button onClick={() => history.push('/router/page1')}>Page 1</Button>
-      <Button onClick={() => history.push('/router/page2')}>Page 2</Button>
-      <Button onClick={() => history.push('/router/page3')}>Page 3</Button>
-      <Button onClick={() => history.push('/router/page4')}>Page 4</Button>
+    <Container>
+      <Text variant="h3">Router</Text>
+      <Button onClick={() => history.push('/router/page1')} xs={3}>
+        Page 1
+      </Button>
+      <Button onClick={() => history.push('/router/page2')} xs={3}>
+        Page 2
+      </Button>
+      <Button onClick={() => history.push('/router/page3')} xs={3}>
+        Page 3
+      </Button>
+      <Button onClick={() => history.push('/router/page4')} xs={3}>
+        Page 4
+      </Button>
       <Router
         routes={[
           { path: '/router/page1', component: <div>Page 1</div> },
@@ -16,6 +25,6 @@ export const RouterPage = () => {
           { path: '/router/page4', component: <div>Page 4</div> },
         ]}
       />
-    </div>
+    </Container>
   );
 };

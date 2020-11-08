@@ -20,6 +20,7 @@ export * from './components/ItemLink';
 export * from './components/Modal';
 export * from './components/Page';
 export * from './components/PageRouter';
+export * from './components/SimonProvider';
 export * from './components/Text';
 export * from './components/ThemeProvider';
 export * from './utils/useForm';
