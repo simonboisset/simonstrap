@@ -1,4 +1,5 @@
 import { ThemeOptions } from '@material-ui/core';
+import { ZIndex } from '@material-ui/core/styles/zIndex';
 import React from 'react';
 import { history, useURL } from 'react-router-url';
 import { Child } from './Component';
@@ -28,7 +29,18 @@ export type SimonProviderProps = {
 export const SimonProvider = ({ children, theme }: SimonProviderProps) => {
   const [drawer, setDrawer] = React.useState(false);
   const [modal, setModal] = React.useState<string>();
-  const { components, ...MUITheme } = theme;
+  let { components, ...MUITheme } = theme;
+
+  const zIndex: ZIndex = {
+    appBar: components.drawer.z === 'on' ? 1100 : 1210,
+    mobileStepper: 1000,
+    snackbar: 1400,
+    speedDial: 1050,
+    drawer: 1200,
+    tooltip: 1500,
+    modal: 1300,
+  };
+  MUITheme.zIndex = zIndex;
   return (
     <ThemeProvider theme={MUITheme}>
       <SimonContext.Provider value={{ drawer, modal, setDrawer, setModal, components }}>

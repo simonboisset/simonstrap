@@ -1,6 +1,6 @@
 import { css } from 'emotion';
 import React from 'react';
-import { useDrawer } from './SimonProvider';
+import { DrawerPosition, useDrawer } from './SimonProvider';
 
 export const Page = ({
   header,
@@ -11,20 +11,29 @@ export const Page = ({
   drawer?: JSX.Element;
   children: React.ReactNode;
 }) => {
-  const { width } = useDrawer();
+  const { width, variant, position, open } = useDrawer();
+  const marge = variant === 'permanent' || (open && variant === 'persistent');
   return (
     <>
-      {header}
       {drawer}
-      <div className={pageStyle(width)}>{children}</div>
+      <div className={containerStyle(width, position, marge)}>
+        {header}
+        <div className={pageStyle}>{children}</div>
+      </div>
     </>
   );
 };
 
-const pageStyle = (width: number) =>
-  css({
-    marginLeft: width + 16,
-    marginBottom: 16,
-    marginTop: 16,
-    marginRight: 16,
+const containerStyle = (width: number, position?: DrawerPosition, marge?: boolean) => {
+  return css({
+    marginLeft: position === 'left' && marge ? width : 0,
+    marginBottom: position === 'bottom' && marge ? width : 0,
+    marginTop: position === 'top' && marge ? width : 0,
+    marginRight: position === 'right' && marge ? width : 0,
+    transition: 'all 200ms',
   });
+};
+
+const pageStyle = css({
+  margin: 16,
+});

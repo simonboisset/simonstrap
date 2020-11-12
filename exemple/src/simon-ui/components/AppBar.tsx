@@ -1,7 +1,7 @@
 import { AppBar as AppBarMUI, Toolbar, Typography } from '@material-ui/core';
-import { css, cx } from 'emotion';
+import { css } from 'emotion';
 import React from 'react';
-import { DrawerPosition, DrawerZindex, useDrawer } from './SimonProvider';
+import { DrawerPosition, useDrawer } from './SimonProvider';
 
 type AppBarProps = {
   title?: string;
@@ -15,8 +15,8 @@ export const AppBar = ({ title, leftElements, rigthElements, className }: AppBar
   const marge = z === 'on' && (variant === 'permanent' || (open && variant === 'persistent'));
   return (
     <>
-      <AppBarMUI position="fixed" className={cx([className, appBarStyle(width, position, marge, z)])}>
-        <Toolbar>
+      <AppBarMUI position="fixed" className={className}>
+        <Toolbar className={toolBarStyle(width, position, marge)}>
           {leftElements}
           <Typography className={titleStyle} variant="h6">
             {title}
@@ -33,12 +33,12 @@ const titleStyle = css({
   flexGrow: 1,
 });
 
-const appBarStyle = (width: number, position?: DrawerPosition, marge?: boolean, z?: DrawerZindex) =>
+const toolBarStyle = (width: number, position?: DrawerPosition, marge?: boolean) =>
   css({
-    paddingLeft: position === 'left' && marge ? width : 0,
+    marginLeft: position === 'left' && marge ? width : 0,
     marginBottom: position === 'bottom' && marge ? width : 0,
     marginTop: position === 'top' && marge ? width : 0,
     marginRight: position === 'right' && marge ? width : 0,
-    zIndex: z === 'under' ? 12001 : 1100,
     transition: 'all 200ms',
   });
+// type CSS = React.CSSProperties
