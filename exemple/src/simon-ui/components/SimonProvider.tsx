@@ -1,3 +1,4 @@
+import { css, CSSInterpolation } from '@emotion/css';
 import { ThemeOptions } from '@material-ui/core';
 import { ZIndex } from '@material-ui/core/styles/zIndex';
 import React from 'react';
@@ -11,6 +12,7 @@ const SimonContext = React.createContext(
     modal?: string;
     setModal: (active?: string) => void;
     components: ComponentsTheme;
+    theme: Theme;
   }
 );
 
@@ -43,7 +45,7 @@ export const SimonProvider = ({ children, theme }: SimonProviderProps) => {
   MUITheme.zIndex = zIndex;
   return (
     <ThemeProvider theme={MUITheme}>
-      <SimonContext.Provider value={{ drawer, modal, setDrawer, setModal, components }}>
+      <SimonContext.Provider value={{ drawer, modal, setDrawer, setModal, components, theme }}>
         {children}
       </SimonContext.Provider>
     </ThemeProvider>
@@ -95,4 +97,15 @@ export const useModalURL = (pathName: string) => {
     history.push(nextPath);
   };
   return { open: path === pathName, openModal, closeModal };
+};
+const useStyle = (fct: (thm: Theme) => CSSInterpolation) => {
+  const { theme } = React.useContext(SimonContext);
+  return css(fct(theme));
+};
+export const useTheme = () => {
+  const { theme } = React.useContext(SimonContext);
+  return theme;
+};
+export const makeCSS = (fct: (thm: Theme) => CSSInterpolation) => {
+  return () => useStyle(fct);
 };

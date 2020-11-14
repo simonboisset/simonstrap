@@ -6,7 +6,7 @@ type ButtonProps = Omit<React.ComponentProps<typeof ButtonUI> & GridItemProps, '
 
 export const Button = ({ xs, sm, lg, md, xl, ...props }: ButtonProps) => {
   return (
-    <GridItem xs={xs} sm={sm} lg={lg} md={md} xl={xl}>
+    <GridItem {...{ xs, sm, lg, md, xl }}>
       <ButtonUI {...props} fullWidth />
     </GridItem>
   );

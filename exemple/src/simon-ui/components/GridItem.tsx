@@ -13,9 +13,9 @@ export type GridItemProps = {
   className?: string;
 };
 
-export const GridItem = ({ xs = 12, md, sm, lg, xl, children, className }: GridItemProps) => {
+export const GridItem = ({ xs = 12, children, ...props }: GridItemProps) => {
   return (
-    <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl} className={className}>
+    <Grid item xs={xs} {...props}>
       {children}
     </Grid>
   );
