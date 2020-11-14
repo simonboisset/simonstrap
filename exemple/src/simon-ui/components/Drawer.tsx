@@ -1,7 +1,7 @@
+import { css } from '@emotion/css';
 import { Drawer as DrawerUI, List, Toolbar } from '@material-ui/core';
-import { css } from 'emotion';
 import React from 'react';
-import { Child } from './Component';
+import { Child } from './GridItem';
 import { useDrawer } from './SimonProvider';
 
 type DrawerProps = {

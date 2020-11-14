@@ -1,5 +1,5 @@
+import { css } from '@emotion/css';
 import { AppBar as AppBarMUI, Toolbar, Typography } from '@material-ui/core';
-import { css } from 'emotion';
 import React from 'react';
 import { DrawerPosition, useDrawer } from './SimonProvider';
 

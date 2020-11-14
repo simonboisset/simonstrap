@@ -14,7 +14,6 @@ export {
   DialogTitle,
   Divider,
   LinearProgress,
-  Paper,
   Snackbar,
   Tab,
   Tabs,
@@ -26,6 +25,7 @@ export * from './components/Button';
 export * from './components/Container';
 export * from './components/Drawer';
 export * from './components/Form';
+export * from './components/GridItem';
 export * from './components/IconButton';
 export * from './components/InputCheckBox';
 export * from './components/InputDate';
@@ -39,6 +39,7 @@ export * from './components/ItemLink';
 export * from './components/Modal';
 export * from './components/Page';
 export * from './components/PageRouter';
+export * from './components/Paper';
 export * from './components/SimonProvider';
 export * from './components/Text';
 export * from './components/ThemeProvider';

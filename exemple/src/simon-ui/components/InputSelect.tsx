@@ -1,22 +1,18 @@
-import { FormControl, FormHelperText, Grid, Icon, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { FormControl, FormHelperText, Icon, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { useFromStyle } from './InputText';
+import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemSelectType<T> = { name?: string; value: T; icon?: string };
-
-export const InputSelect: React.FC<{
+type InputSelectProps = {
   name: string;
   label?: string;
-  spaceBelow?: boolean;
-  spaceAfter?: boolean;
   items: ItemSelectType<string>[];
-  xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-}> = ({ name, label, items, xs, spaceBelow, spaceAfter }) => {
+} & GridItemProps;
+export const InputSelect = ({ name, label, items, ...rest }: InputSelectProps) => {
   const { errors, control } = useFormContext();
-  const classes = useFromStyle({ spaceBelow, spaceAfter });
   return (
-    <Grid item xs={xs ? xs : 12} className={classes.space}>
+    <GridItem {...rest}>
       <Controller
         render={(props) => (
           <FormControl variant="outlined" fullWidth>
@@ -39,6 +35,6 @@ export const InputSelect: React.FC<{
         control={control}
         defaultValue=""
       />
-    </Grid>
+    </GridItem>
   );
 };

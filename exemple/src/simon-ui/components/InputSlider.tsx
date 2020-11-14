@@ -1,24 +1,20 @@
-import { FormHelperText, Grid, Slider, Typography } from '@material-ui/core';
+import { FormHelperText, Slider, Typography } from '@material-ui/core';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { useFromStyle } from './InputText';
+import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemSliderType<T> = { name?: string; value: T; icon?: string };
-
-export const InputSlider: React.FC<{
+type InputSliderProps = {
   name: string;
   label?: string;
-  spaceBelow?: boolean;
-  spaceAfter?: boolean;
-  xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   min?: number;
   max?: number;
   step?: number;
-}> = ({ name, label, xs, spaceBelow, spaceAfter, step, max = 100, min = 0 }) => {
+} & GridItemProps;
+export const InputSlider = ({ name, label, step, max = 100, min = 0, ...rest }: InputSliderProps) => {
   const { errors, control } = useFormContext();
-  const classes = useFromStyle({ spaceBelow, spaceAfter });
   return (
-    <Grid item xs={xs ? xs : 12} className={classes.space}>
+    <GridItem {...rest}>
       <Controller
         render={(props) => (
           <>
@@ -40,6 +36,6 @@ export const InputSlider: React.FC<{
         control={control}
         defaultValue={min}
       />
-    </Grid>
+    </GridItem>
   );
 };

@@ -1,23 +1,20 @@
 import DayjsUtils from '@date-io/dayjs';
-import { Grid } from '@material-ui/core';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { useFromStyle } from './InputText';
+import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemDateType<T> = { name?: string; value: T; icon?: string };
 
-export const InputDate: React.FC<{
+type InputDateProps = {
   name: string;
   label?: string;
-  spaceBelow?: boolean;
-  spaceAfter?: boolean;
-  xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-}> = ({ name, label, xs, spaceBelow, spaceAfter }) => {
+} & GridItemProps;
+
+export const InputDate = ({ name, label, ...rest }: InputDateProps) => {
   const { errors, control } = useFormContext();
-  const classes = useFromStyle({ spaceBelow, spaceAfter });
   return (
-    <Grid item xs={xs ? xs : 12} className={classes.space}>
+    <GridItem {...rest}>
       <Controller
         render={(props) => (
           <MuiPickersUtilsProvider utils={DayjsUtils}>
@@ -36,6 +33,6 @@ export const InputDate: React.FC<{
         control={control}
         defaultValue={new Date()}
       />
-    </Grid>
+    </GridItem>
   );
 };

@@ -2,7 +2,7 @@ import { ThemeOptions } from '@material-ui/core';
 import { ZIndex } from '@material-ui/core/styles/zIndex';
 import React from 'react';
 import { history, useURL } from 'react-router-url';
-import { Child } from './Component';
+import { Child } from './GridItem';
 import { ThemeProvider } from './ThemeProvider';
 const SimonContext = React.createContext(
   {} as {

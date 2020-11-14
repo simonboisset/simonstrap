@@ -1,13 +1,11 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
-import { ComponentProps } from './Component';
+import { GridItemProps } from './GridItem';
 
-export const Container = ({ children, xs = 12, sm, md, lg, xl }: ComponentProps) => {
+export const Container = ({ xs = 12, ...props }: GridItemProps) => {
   return (
     <Grid container justify="center">
-      <Grid container item xs={xs} sm={sm} md={md} lg={lg} xl={xl} spacing={2}>
-        {children}
-      </Grid>
+      <Grid container item xs={xs} spacing={2} {...props} />
     </Grid>
   );
 };
