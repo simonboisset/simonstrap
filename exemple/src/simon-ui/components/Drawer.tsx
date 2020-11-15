@@ -14,14 +14,9 @@ export const Drawer = ({ children, ...props }: DrawerProps) => {
   return (
     <DrawerUI {...props} open={open} onClose={closeDrawer} variant={variant} anchor={position}>
       {z === 'under' && <Toolbar />}
-      <List component="nav" className={listStyle(width)}>
+      <List component="nav" className={css({ width })}>
         {children}
       </List>
     </DrawerUI>
   );
 };
-
-const listStyle = (width: number) =>
-  css({
-    width,
-  });

@@ -1,7 +1,9 @@
+import { css, CSSInterpolation } from '@emotion/css';
 import { ThemeOptions } from '@material-ui/core';
+import { ZIndex } from '@material-ui/core/styles/zIndex';
 import React from 'react';
 import { history, useURL } from 'react-router-url';
-import { Child } from './Component';
+import { Child } from './GridItem';
 import { ThemeProvider } from './ThemeProvider';
 const SimonContext = React.createContext(
   {} as {
@@ -10,6 +12,7 @@ const SimonContext = React.createContext(
     modal?: string;
     setModal: (active?: string) => void;
     components: ComponentsTheme;
+    theme: Theme;
   }
 );
 
@@ -28,10 +31,21 @@ export type SimonProviderProps = {
 export const SimonProvider = ({ children, theme }: SimonProviderProps) => {
   const [drawer, setDrawer] = React.useState(false);
   const [modal, setModal] = React.useState<string>();
-  const { components, ...MUITheme } = theme;
+  let { components, ...MUITheme } = theme;
+
+  const zIndex: ZIndex = {
+    appBar: components.drawer.z === 'on' ? 1100 : 1210,
+    mobileStepper: 1000,
+    snackbar: 1400,
+    speedDial: 1050,
+    drawer: 1200,
+    tooltip: 1500,
+    modal: 1300,
+  };
+  MUITheme.zIndex = zIndex;
   return (
     <ThemeProvider theme={MUITheme}>
-      <SimonContext.Provider value={{ drawer, modal, setDrawer, setModal, components }}>
+      <SimonContext.Provider value={{ drawer, modal, setDrawer, setModal, components, theme }}>
         {children}
       </SimonContext.Provider>
     </ThemeProvider>
@@ -83,4 +97,15 @@ export const useModalURL = (pathName: string) => {
     history.push(nextPath);
   };
   return { open: path === pathName, openModal, closeModal };
+};
+const useStyle = (fct: (thm: Theme) => CSSInterpolation) => {
+  const { theme } = React.useContext(SimonContext);
+  return css(fct(theme));
+};
+export const useTheme = () => {
+  const { theme } = React.useContext(SimonContext);
+  return theme;
+};
+export const makeCSS = (fct: (thm: Theme) => CSSInterpolation) => {
+  return () => useStyle(fct);
 };

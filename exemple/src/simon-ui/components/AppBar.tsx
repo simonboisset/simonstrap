@@ -31,6 +31,7 @@ export const AppBar = ({ title, leftElements, rigthElements, className }: AppBar
 
 const titleStyle = css({
   flexGrow: 1,
+  paddingLeft: 8,
 });
 
 const toolBarStyle = (width: number, position?: DrawerPosition, marge?: boolean) =>

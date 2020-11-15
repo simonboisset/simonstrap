@@ -3,7 +3,7 @@ import React from 'react';
 
 export type GridSize = boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type Child = JSX.Element | JSX.Element[];
-export type ComponentProps = {
+export type GridItemProps = {
   xs?: GridSize;
   sm?: GridSize;
   md?: GridSize;
@@ -13,9 +13,9 @@ export type ComponentProps = {
   className?: string;
 };
 
-export const Component = ({ xs = 12, md, sm, lg, xl, children, className }: ComponentProps) => {
+export const GridItem = ({ xs = 12, children, ...props }: GridItemProps) => {
   return (
-    <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl} className={className}>
+    <Grid item xs={xs} {...props}>
       {children}
     </Grid>
   );

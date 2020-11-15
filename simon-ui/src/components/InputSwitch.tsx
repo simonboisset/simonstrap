@@ -1,8 +1,8 @@
-import { FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Grid, Switch } from '@material-ui/core';
+import { FormControl, FormControlLabel, FormHelperText, FormLabel, Switch } from '@material-ui/core';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { useFromStyle } from './InputText';
-
+import { Direction, directionStyle } from '../styles/direction';
+import { GridItem, GridItemProps } from './GridItem';
 export type ItemSwitchType = { label?: string; name?: string; icon?: string };
 
 export type renderControlerProps = {
@@ -12,18 +12,14 @@ export type renderControlerProps = {
   name: string;
   ref: React.MutableRefObject<any>;
 };
-
-export const InputSwitch: React.FC<{
+type InputSwitchProps = {
   name: string;
   label?: string;
   items?: ItemSwitchType[];
-  spaceBelow?: boolean;
-  spaceAfter?: boolean;
-  direction?: 'horizontal' | 'vertical';
-  xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-}> = ({ name, label, items, xs, spaceAfter, direction = 'horizontal', spaceBelow }) => {
+  direction?: Direction;
+} & GridItemProps;
+export const InputSwitch = ({ name, label, items, direction, ...rest }: InputSwitchProps) => {
   const { errors, control } = useFormContext();
-  const classes = useFromStyle({ direction, spaceBelow, spaceAfter });
 
   const itemChange = (index: number, value: boolean, props: renderControlerProps, item: ItemSwitchType) => {
     const nextValue = [...props.value];
@@ -32,14 +28,14 @@ export const InputSwitch: React.FC<{
   };
 
   return (
-    <Grid item xs={xs ? xs : 12} className={classes.space}>
+    <GridItem {...rest}>
       <Controller
         render={(props) => (
           <FormControl component="fieldset">
             {items ? (
               <>
                 <FormLabel component="legend">{label}</FormLabel>
-                <FormGroup className={classes.group}>
+                <div className={directionStyle(direction)}>
                   {props.value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
                     <FormControlLabel
                       key={i}
@@ -49,7 +45,7 @@ export const InputSwitch: React.FC<{
                       label={item.label}
                     />
                   ))}
-                </FormGroup>
+                </div>
               </>
             ) : (
               <FormControlLabel
@@ -65,6 +61,6 @@ export const InputSwitch: React.FC<{
         control={control}
         defaultValue={items ? items.map((item) => ({ ...item, value: false })) : false}
       />
-    </Grid>
+    </GridItem>
   );
 };

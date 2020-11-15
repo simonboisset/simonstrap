@@ -17,6 +17,7 @@ export const Modal = ({ children, onClose, maxWidth = 'md', scroll = 'body', ...
     </Dialog>
   );
 };
+
 const useStyles = makeStyles(({ spacing }) => ({
   fab: {
     position: 'absolute',

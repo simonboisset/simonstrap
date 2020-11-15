@@ -1,4 +1,4 @@
-import { css } from 'emotion';
+import { css } from '@emotion/css';
 import React from 'react';
 import { DrawerPosition, useDrawer } from './SimonProvider';
 
@@ -16,24 +16,18 @@ export const Page = ({
   return (
     <>
       {drawer}
-      <div className={containerStyle(width, position, marge)}>
-        {header}
-        <div className={pageStyle}>{children}</div>
-      </div>
+      {header}
+      <div className={pageStyle(width, position, marge)}>{children}</div>
     </>
   );
 };
 
-const containerStyle = (width: number, position?: DrawerPosition, marge?: boolean) => {
+const pageStyle = (width: number, position?: DrawerPosition, marge?: boolean) => {
   return css({
-    marginLeft: position === 'left' && marge ? width : 0,
-    marginBottom: position === 'bottom' && marge ? width : 0,
-    marginTop: position === 'top' && marge ? width : 0,
-    marginRight: position === 'right' && marge ? width : 0,
+    marginLeft: position === 'left' && marge ? width + 16 : 16,
+    marginBottom: position === 'bottom' && marge ? width + 16 : 16,
+    marginTop: position === 'top' && marge ? width + 16 : 16,
+    marginRight: position === 'right' && marge ? width + 16 : 16,
     transition: 'all 200ms',
   });
 };
-
-const pageStyle = css({
-  margin: 16,
-});

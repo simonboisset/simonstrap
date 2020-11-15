@@ -36,6 +36,7 @@ export * from './components/InputSwitch';
 export * from './components/InputText';
 export * from './components/Item';
 export * from './components/ItemLink';
+export * from './components/Menu';
 export * from './components/Modal';
 export * from './components/Page';
 export * from './components/PageRouter';

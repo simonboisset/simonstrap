@@ -1,36 +1,35 @@
-import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Grid } from '@material-ui/core';
+import { Checkbox, FormControl, FormControlLabel, FormHelperText, FormLabel } from '@material-ui/core';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { Direction, directionStyle } from '../styles/direction';
+import { GridItem, GridItemProps } from './GridItem';
 import { renderControlerProps } from './InputSwitch';
-import { useFromStyle } from './InputText';
 
 export type ItemCheckBoxType = { label?: string; name?: string; icon?: string };
 
-export const InputCheckBox: React.FC<{
+type InputCheckBoxProps = {
   name: string;
   label?: string;
   items?: ItemCheckBoxType[];
-  spaceBelow?: boolean;
-  spaceAfter?: boolean;
-  xs?: boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  direction?: 'horizontal' | 'vertical';
-}> = ({ name, label, items, xs, direction = 'horizontal', spaceBelow, spaceAfter }) => {
+  direction?: Direction;
+} & GridItemProps;
+
+export const InputCheckBox = ({ name, label, items, direction, ...rest }: InputCheckBoxProps) => {
   const { errors, control } = useFormContext();
-  const classes = useFromStyle({ direction, spaceBelow, spaceAfter });
   const itemChange = (index: number, value: boolean, props: renderControlerProps, item: ItemCheckBoxType) => {
     const nextValue = [...props.value];
     nextValue[index] = { ...item, value };
     props.onChange(nextValue);
   };
   return (
-    <Grid item xs={xs ? xs : 12} className={classes.space}>
+    <GridItem {...rest}>
       <Controller
         render={(props) => (
           <FormControl component="fieldset">
             {items ? (
               <>
                 <FormLabel component="legend">{label}</FormLabel>
-                <FormGroup className={classes.group}>
+                <div className={directionStyle(direction)}>
                   {props.value.map((item: ItemCheckBoxType & { value: boolean }, i: number) => (
                     <FormControlLabel
                       key={i}
@@ -40,7 +39,7 @@ export const InputCheckBox: React.FC<{
                       label={item.label}
                     />
                   ))}
-                </FormGroup>
+                </div>
               </>
             ) : (
               <FormControlLabel
@@ -55,6 +54,6 @@ export const InputCheckBox: React.FC<{
         control={control}
         defaultValue={items ? items.map((item) => ({ ...item, value: false })) : false}
       />
-    </Grid>
+    </GridItem>
   );
 };

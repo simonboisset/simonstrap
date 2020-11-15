@@ -1,7 +1,7 @@
+import { css } from '@emotion/css';
 import { Drawer as DrawerUI, List, Toolbar } from '@material-ui/core';
-import { css } from 'emotion';
 import React from 'react';
-import { Child } from './Component';
+import { Child } from './GridItem';
 import { useDrawer } from './SimonProvider';
 
 type DrawerProps = {
@@ -14,14 +14,9 @@ export const Drawer = ({ children, ...props }: DrawerProps) => {
   return (
     <DrawerUI {...props} open={open} onClose={closeDrawer} variant={variant} anchor={position}>
       {z === 'under' && <Toolbar />}
-      <List component="nav" className={listStyle(width)}>
+      <List component="nav" className={css({ width })}>
         {children}
       </List>
     </DrawerUI>
   );
 };
-
-const listStyle = (width: number) =>
-  css({
-    width,
-  });
