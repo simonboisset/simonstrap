@@ -22,4 +22,4 @@ jobs:
           git config --local user.name "simonboisset"
           yarn
           lerna bootstrap
-          lerna publish
+          lerna publish patch
