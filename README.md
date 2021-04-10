@@ -1,4 +1,4 @@
-# Kuit
+# react-kit-ui
 
 React Components based on [material-ui](https://material-ui.com/)
 
@@ -11,7 +11,7 @@ I choosed to include material-ui for ui, react-hook-form for forms, yup for sche
 # Install
 
 ```sh
-yarn add kuit
+yarn add react-kit-ui
 ```
 
 # Get Started
@@ -19,7 +19,7 @@ yarn add kuit
 use the context provider for theming and hooks.
 
 ```jsx
-import { KuitProvider, Theme } from "kuit";
+import { ReactKitProvider, Theme } from "react-kit-ui";
 
 const theme: Theme = {
   palette: {
@@ -34,9 +34,9 @@ const theme: Theme = {
 
 function App() {
   return (
-    <KuitProvider theme={theme}>
+    <ReactKitProvider theme={theme}>
       <YourApp />
-    </KuitProvider>
+    </ReactKitProvider>
   );
 }
 ```
@@ -47,10 +47,10 @@ Theme is use the material-ui [theme](https://material-ui.com/customization/themi
 
 ## PageRouter
 
-Fore routing we use [react-router-url](https://github.com/simonboisset/react-router-url/tree/main/react-router-url)
+Fore routing I use [react-router-url](https://github.com/simonboisset/react-router-url/tree/main/react-router-url)
 
 ```jsx
-import { PageRouter, Text, Redirect } from "kuit";
+import { PageRouter, Text, Redirect } from "react-kit-ui";
 
 <PageRouter
   header={<Header />}
@@ -92,7 +92,7 @@ import {
   Text,
   useForm,
   yup,
-} from "kuit";
+} from "react-kit-ui";
 
 const genders = [
   { name: "Male", value: "male" },
@@ -150,7 +150,7 @@ export const FormPage = () => {
 # Modal
 
 ```jsx
-import { Button, Container, Modal, Text, useForm, useModalURL } from "kuit";
+import { Button, Container, Modal, Text, useForm, useModalURL } from "react-kit-ui";
 
 export const ModalPage = () => {
   // Use this to use context

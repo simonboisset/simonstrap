@@ -31,7 +31,7 @@ export const AppBar = ({ title, leftElements, rigthElements, className }: AppBar
 
 const titleStyle = css({
   flexGrow: 1,
-  paddingLeft: 8,
+  paddingLeft: 8
 });
 
 const toolBarStyle = (width: number, position?: DrawerPosition, marge?: boolean) =>
@@ -40,6 +40,6 @@ const toolBarStyle = (width: number, position?: DrawerPosition, marge?: boolean)
     marginBottom: position === 'bottom' && marge ? width : 0,
     marginTop: position === 'top' && marge ? width : 0,
     marginRight: position === 'right' && marge ? width : 0,
-    transition: 'all 200ms',
+    transition: 'all 200ms'
   });
 // type CSS = React.CSSProperties

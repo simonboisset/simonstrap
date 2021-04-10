@@ -5,7 +5,7 @@ import { DrawerPosition, useDrawer } from './SimonProvider';
 export const Page = ({
   header,
   drawer,
-  children,
+  children
 }: {
   header?: JSX.Element;
   drawer?: JSX.Element;
@@ -28,6 +28,6 @@ const pageStyle = (width: number, position: DrawerPosition = 'left', marge?: boo
     marginBottom: position === 'bottom' && marge ? width + 16 : 16,
     marginTop: position === 'top' && marge ? width + 16 : 16,
     marginRight: position === 'right' && marge ? width + 16 : 16,
-    transition: 'all 200ms',
+    transition: 'all 200ms'
   });
 };

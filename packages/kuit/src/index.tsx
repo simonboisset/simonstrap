@@ -16,7 +16,7 @@ export {
   LinearProgress,
   Snackbar,
   Tab,
-  Tabs,
+  Tabs
 } from '@material-ui/core';
 export { useFormContext, useWatch } from 'react-hook-form';
 export { history, Redirect, Router, useURL } from 'react-router-url';

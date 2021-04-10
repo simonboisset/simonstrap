@@ -5,7 +5,7 @@ import React from 'react';
 import { history, useURL } from 'react-router-url';
 import { Child } from './GridItem';
 import { ThemeProvider } from './ThemeProvider';
-const SimonContext = React.createContext(
+const ReactKitContext = React.createContext(
   {} as {
     drawer?: boolean;
     setDrawer: (open: boolean) => void;
@@ -23,12 +23,12 @@ export type Theme = ThemeOptions & { components: ComponentsTheme };
 export type DrawerVariant = 'permanent' | 'persistent' | 'temporary';
 export type DrawerZindex = 'on' | 'under';
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
-export type SimonProviderProps = {
+export type ReactKitProviderProps = {
   theme: Theme;
   children?: Child;
 };
 
-export const SimonProvider = ({ children, theme }: SimonProviderProps) => {
+export const ReactKitProvider = ({ children, theme }: ReactKitProviderProps) => {
   const [drawer, setDrawer] = React.useState(false);
   const [modal, setModal] = React.useState<string>();
   let { components, ...MUITheme } = theme;
@@ -40,20 +40,20 @@ export const SimonProvider = ({ children, theme }: SimonProviderProps) => {
     speedDial: 1050,
     drawer: 1200,
     tooltip: 1500,
-    modal: 1300,
+    modal: 1300
   };
   MUITheme.zIndex = zIndex;
   return (
     <ThemeProvider theme={MUITheme}>
-      <SimonContext.Provider value={{ drawer, modal, setDrawer, setModal, components, theme }}>
+      <ReactKitContext.Provider value={{ drawer, modal, setDrawer, setModal, components, theme }}>
         {children}
-      </SimonContext.Provider>
+      </ReactKitContext.Provider>
     </ThemeProvider>
   );
 };
 
 export const useDrawer = () => {
-  const { drawer, setDrawer, components } = React.useContext(SimonContext);
+  const { drawer, setDrawer, components } = React.useContext(ReactKitContext);
 
   const openDrawer = () => {
     setDrawer(true);
@@ -69,12 +69,12 @@ export const useDrawer = () => {
     closeDrawer,
     openDrawer,
     toogleDrawer,
-    ...components.drawer,
+    ...components.drawer
   };
 };
 
 export const useModal = (name: string) => {
-  const { modal, setModal } = React.useContext(SimonContext);
+  const { modal, setModal } = React.useContext(ReactKitContext);
 
   const openModal = () => {
     setModal(name);
@@ -92,18 +92,21 @@ export const useModalURL = (pathName: string) => {
     history.push(pathName);
   };
   const closeModal = () => {
-    const nextPath = path.split('/').slice(0, -1).join('/');
+    const nextPath = path
+      .split('/')
+      .slice(0, -1)
+      .join('/');
 
     history.push(nextPath);
   };
   return { open: path === pathName, openModal, closeModal };
 };
 const useStyle = (fct: (thm: Theme) => CSSInterpolation) => {
-  const { theme } = React.useContext(SimonContext);
+  const { theme } = React.useContext(ReactKitContext);
   return css(fct(theme));
 };
 export const useTheme = () => {
-  const { theme } = React.useContext(SimonContext);
+  const { theme } = React.useContext(ReactKitContext);
   return theme;
 };
 export const makeCSS = (fct: (thm: Theme) => CSSInterpolation) => {
