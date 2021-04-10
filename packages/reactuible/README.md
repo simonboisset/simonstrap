@@ -1,4 +1,4 @@
-# react-kit-ui
+# reactuible
 
 React Components based on [material-ui](https://material-ui.com/)
 
@@ -11,7 +11,7 @@ I choosed to include material-ui for ui, react-hook-form for forms, yup for sche
 # Install
 
 ```sh
-yarn add react-kit-ui
+yarn add reactuible
 ```
 
 # Get Started
@@ -19,17 +19,17 @@ yarn add react-kit-ui
 use the context provider for theming and hooks.
 
 ```jsx
-import { ReactKitProvider, Theme } from "react-kit-ui";
+import { ReactKitProvider, Theme } from 'reactuible';
 
 const theme: Theme = {
   palette: {
     primary: {
-      main: "#81c784",
+      main: '#81c784'
     },
     secondary: {
-      main: "#e57373",
-    },
-  },
+      main: '#e57373'
+    }
+  }
 };
 
 function App() {
@@ -50,23 +50,23 @@ Theme is use the material-ui [theme](https://material-ui.com/customization/themi
 Fore routing I use [react-router-url](https://github.com/simonboisset/react-router-url/tree/main/react-router-url)
 
 ```jsx
-import { PageRouter, Text, Redirect } from "react-kit-ui";
+import { PageRouter, Text, Redirect } from 'reactuible';
 
 <PageRouter
   header={<Header />}
   drawer={<Drawer />}
   auth={auth}
   routes={[
-    { path: "/account", protected: true, component: <Acount /> },
+    { path: '/account', protected: true, component: <Acount /> },
     {
-      path: "/",
+      path: '/',
       component: <Redirect to="/home" />,
       routes: [
-        { path: "/home", component: <Home /> },
-        { path: "/aboutus", component: <About /> },
-        { path: "/contact", component: <Contact /> },
-      ],
-    },
+        { path: '/home', component: <Home /> },
+        { path: '/aboutus', component: <About /> },
+        { path: '/contact', component: <Contact /> }
+      ]
+    }
   ]}
 />;
 ```
@@ -92,7 +92,7 @@ import {
   Text,
   useForm,
   yup,
-} from "react-kit-ui";
+} from "reactuible";
 
 const genders = [
   { name: "Male", value: "male" },
@@ -150,13 +150,13 @@ export const FormPage = () => {
 # Modal
 
 ```jsx
-import { Button, Container, Modal, Text, useForm, useModalURL } from "react-kit-ui";
+import { Button, Container, Modal, Text, useForm, useModalURL } from 'reactuible';
 
 export const ModalPage = () => {
   // Use this to use context
-  const { open, openModal, closeModal } = useModal("form-modal");
+  const { open, openModal, closeModal } = useModal('form-modal');
   // Or this to use url
-  const { open, openModal, closeModal } = useModalURL("/modal/open");
+  const { open, openModal, closeModal } = useModalURL('/modal/open');
   const methods = useForm(FormSchema);
 
   return (

@@ -1,5 +1,5 @@
 {
-  "name": "react-kit-ui",
+  "name": "reactuible",
   "version": "0.2.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -39,23 +39,23 @@
     "printWidth": 120
   },
   "author": "Simon Boisset",
-  "module": "dist/react-kit-ui.esm.js",
+  "module": "dist/reactuible.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonboisset/react-kit-ui",
-    "directory": "react-kit-ui"
+    "url": "https://github.com/simonboisset/reactuible",
+    "directory": "reactuible"
   },
   "bugs": {
-    "url": "https://github.com/simonboisset/react-kit-ui/issues"
+    "url": "https://github.com/simonboisset/reactuible/issues"
   },
-  "homepage": "https://github.com/simonboisset/react-kit-ui/tree/master/react-kit-ui",
+  "homepage": "https://github.com/simonboisset/reactuible/tree/master/reactuible",
   "size-limit": [
     {
-      "path": "dist/react-kit-ui.cjs.production.min.js",
+      "path": "dist/reactuible.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/react-kit-ui.esm.js",
+      "path": "dist/reactuible.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -86,5 +86,5 @@
     "react-router-url": "^0.2.9",
     "yup": "^0.29.3"
   },
-  "gitHead": "d6e830c10eff57da5d528618905c3f64b6e43a2b"
+  "gitHead": "69592d3d6c5dd4e04440f0281917032a47c861a3"
 }
