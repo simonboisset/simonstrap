@@ -1,4 +1,4 @@
-# Simon UI
+# Kuit
 
 React Components based on [material-ui](https://material-ui.com/)
 
@@ -11,7 +11,7 @@ I choosed to include material-ui for ui, react-hook-form for forms, yup for sche
 # Install
 
 ```sh
-yarn add simon-ui
+yarn add kuit
 ```
 
 # Get Started
@@ -19,7 +19,7 @@ yarn add simon-ui
 use the context provider for theming and hooks.
 
 ```jsx
-import { SimonProvider, Theme } from "simon-ui";
+import { KuitProvider, Theme } from "kuit";
 
 const theme: Theme = {
   palette: {
@@ -34,9 +34,9 @@ const theme: Theme = {
 
 function App() {
   return (
-    <SimonProvider theme={theme}>
+    <KuitProvider theme={theme}>
       <YourApp />
-    </SimonProvider>
+    </KuitProvider>
   );
 }
 ```
@@ -50,7 +50,7 @@ Theme is use the material-ui [theme](https://material-ui.com/customization/themi
 Fore routing we use [react-router-url](https://github.com/simonboisset/react-router-url/tree/main/react-router-url)
 
 ```jsx
-import { PageRouter, Text, Redirect } from "simon-ui";
+import { PageRouter, Text, Redirect } from "kuit";
 
 <PageRouter
   header={<Header />}
@@ -92,7 +92,7 @@ import {
   Text,
   useForm,
   yup,
-} from "simon-ui";
+} from "kuit";
 
 const genders = [
   { name: "Male", value: "male" },
@@ -150,7 +150,7 @@ export const FormPage = () => {
 # Modal
 
 ```jsx
-import { Button, Container, Modal, Text, useForm, useModalURL } from "simon-ui";
+import { Button, Container, Modal, Text, useForm, useModalURL } from "kuit";
 
 export const ModalPage = () => {
   // Use this to use context

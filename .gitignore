@@ -1,6 +1,7 @@
 node_modules
 index.js
 build
+dist
 yalc.lock
 .yalc
 .DS_Store

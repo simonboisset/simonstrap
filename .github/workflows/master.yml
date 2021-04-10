@@ -14,63 +14,10 @@ jobs:
         with:
           node-version: "14"
           registry-url: https://registry.npmjs.org/
-          scope: '@react-pass'
-      - name: Copy source
-        run: |
-          rm -r ./simon-ui/src/
-          cp -r ./exemple/src/simon-ui ./simon-ui/
-          mv ./simon-ui/simon-ui ./simon-ui/src/
       - name: Publish New Major Version
-        if: contains(github.event.head_commit.message, '[major]')
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
-          cd simon-ui
           yarn
-          yarn version --new-version major --no-git-tag-version
-          yarn publish
-          cd ..
-          git config --local user.email "simonboisset.dev@gmail.com"
-          git config --local user.name "simonboisset"
-          git add .
-          git commit -m "New version"
-          git push
-      - name: Publish New Minor Version
-        if: contains(github.event.head_commit.message, '[minor]')
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: |
-          cd simon-ui
-          yarn
-          yarn version --new-version minor --no-git-tag-version
-          yarn publish
-          cd ..
-          git config --local user.email "simonboisset.dev@gmail.com"
-          git config --local user.name "simonboisset"
-          git add .
-          git commit -m "New version"
-          git push
-      - name: Publish New Patch Version
-        if: github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message, '[major]') && !contains(github.event.head_commit.message, '[minor]')
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: |
-          cd simon-ui
-          yarn
-          yarn version --new-version patch --no-git-tag-version
-          yarn publish
-          cd ..
-          git config --local user.email "simonboisset.dev@gmail.com"
-          git config --local user.name "simonboisset"
-          git add .
-          git commit -m "New version"
-          git push
-      - name: Checkout dev
-        uses: actions/checkout@v2
-        with:
-          ref: 'dev'
-          fetch-depth: '0'
-      - name: Rebase Dev
-        run: |
-          git rebase remotes/origin/master
-          git push
+          yarn i
+          lerna publish

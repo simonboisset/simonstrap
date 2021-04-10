@@ -37,25 +37,25 @@
     "tabWidth": 2,
     "printWidth": 120
   },
-  "name": "simon-ui",
+  "name": "kuit",
   "author": "Simon Boisset",
-  "module": "dist/simon-ui.esm.js",
+  "module": "dist/kuit.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonboisset/simon-ui",
-    "directory": "simon-ui"
+    "url": "https://github.com/simonboisset/kuit",
+    "directory": "kuit"
   },
   "bugs": {
-    "url": "https://github.com/simonboisset/simon-ui/issues"
+    "url": "https://github.com/simonboisset/kuit/issues"
   },
-  "homepage": "https://github.com/simonboisset/simon-ui/tree/master/simon-ui",
+  "homepage": "https://github.com/simonboisset/kuit/tree/master/kuit",
   "size-limit": [
     {
-      "path": "dist/simon-ui.cjs.production.min.js",
+      "path": "dist/kuit.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/simon-ui.esm.js",
+      "path": "dist/kuit.esm.js",
       "limit": "10 KB"
     }
   ],
