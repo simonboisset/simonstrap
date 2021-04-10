@@ -18,6 +18,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
+          git config --local user.email "simonboisset.dev@gmail.com"
+          git config --local user.name "simonboisset"
           yarn
-          yarn i
+          lerna bootstrap
           lerna publish
