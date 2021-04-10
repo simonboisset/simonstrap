@@ -1,6 +1,6 @@
 {
   "name": "exemple",
-  "version": "0.2.0",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "@date-io/dayjs": "1.x",
