@@ -1,5 +1,7 @@
-import { css } from '@emotion/css';
+import { makeStyles } from '@material-ui/core';
 
-export const fullWidth = css({
-  width: '100%',
+export const useFullWidthStyle = makeStyles({
+  fullWidth: {
+    width: '100%'
+  }
 });

@@ -1,9 +1,11 @@
-import { css } from '@emotion/css';
+import { makeStyles } from '@material-ui/core';
+import { Theme } from '../components/MuiKitProvider';
 
 export type Direction = 'horizontal' | 'vertical';
 
-export const directionStyle = (direction?: Direction) =>
-  css({
+export const useDirectionStyle = makeStyles<Theme, { direction?: Direction }, 'direction'>({
+  direction: props => ({
     display: 'flex',
-    flexDirection: direction === 'vertical' ? 'column' : 'row',
-  });
+    flexDirection: props.direction === 'vertical' ? 'column' : 'row'
+  })
+});

@@ -1,7 +1,7 @@
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Switch } from '@material-ui/core';
 import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-import { Direction, directionStyle } from '../styles/direction';
+import { Direction, useDirectionStyle } from '../styles/direction';
+import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
 export type ItemSwitchType = { label?: string; name?: string; icon?: string };
 
@@ -19,48 +19,43 @@ type InputSwitchProps = {
   direction?: Direction;
 } & GridItemProps;
 export const InputSwitch = ({ name, label, items, direction, ...rest }: InputSwitchProps) => {
-  const { errors, control } = useFormContext();
+  const classes = useDirectionStyle({ direction });
+  const { getInputValue, onInputChange, getInputError } = useForm<any>();
+  const value = getInputValue(name);
+  const onChange = onInputChange(name);
+  const errors = getInputError(name);
 
-  const itemChange = (index: number, value: boolean, props: renderControlerProps, item: ItemSwitchType) => {
-    const nextValue = [...props.value];
-    nextValue[index] = { ...item, value };
-    props.onChange(nextValue);
+  const itemChange = (index: number, itemValue: boolean, item: ItemSwitchType) => {
+    const nextValue = [...value];
+    nextValue[index] = { ...item, value: itemValue };
+    onChange(nextValue);
   };
 
   return (
     <GridItem {...rest}>
-      <Controller
-        render={(props) => (
-          <FormControl component="fieldset">
-            {items ? (
-              <>
-                <FormLabel component="legend">{label}</FormLabel>
-                <div className={directionStyle(direction)}>
-                  {props.value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
-                    <FormControlLabel
-                      key={i}
-                      control={
-                        <Switch onChange={(_, checked) => itemChange(i, checked, props, item)} checked={item.value} />
-                      }
-                      label={item.label}
-                    />
-                  ))}
-                </div>
-              </>
-            ) : (
-              <FormControlLabel
-                control={<Switch onChange={(_, checked) => props.onChange(checked)} checked={props.value} />}
-                label={label}
-              />
-            )}
-
-            <FormHelperText error={!!errors[name]}>{errors[name]?.message}</FormHelperText>
-          </FormControl>
+      <FormControl component="fieldset">
+        {items ? (
+          <>
+            <FormLabel component="legend">{label}</FormLabel>
+            <div className={classes.direction}>
+              {value.map((item: ItemSwitchType & { value: boolean }, i: number) => (
+                <FormControlLabel
+                  key={i}
+                  control={<Switch onChange={(_, checked) => itemChange(i, checked, item)} checked={item.value} />}
+                  label={item.label}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <FormControlLabel
+            control={<Switch onChange={(_, checked) => onChange(checked)} checked={value} />}
+            label={label}
+          />
         )}
-        name={name}
-        control={control}
-        defaultValue={items ? items.map((item) => ({ ...item, value: false })) : false}
-      />
+
+        <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+      </FormControl>
     </GridItem>
   );
 };

@@ -1,7 +1,7 @@
 import DayjsUtils from '@date-io/dayjs';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemDateType<T> = { name?: string; value: T; icon?: string };
@@ -12,27 +12,23 @@ type InputDateProps = {
 } & GridItemProps;
 
 export const InputDate = ({ name, label, ...rest }: InputDateProps) => {
-  const { errors, control } = useFormContext();
+  const { getInputValue, onInputChange, getInputError } = useForm<any>();
+  const value = getInputValue(name);
+  const onChange = onInputChange(name);
+  const errors = getInputError(name);
   return (
     <GridItem {...rest}>
-      <Controller
-        render={(props) => (
-          <MuiPickersUtilsProvider utils={DayjsUtils}>
-            <KeyboardDatePicker
-              fullWidth
-              label={label}
-              format="DD/MM/YYYY"
-              inputVariant="outlined"
-              value={props.value}
-              onChange={props.onChange}
-              error={!!errors[name]}
-            />
-          </MuiPickersUtilsProvider>
-        )}
-        name={name}
-        control={control}
-        defaultValue={new Date()}
-      />
+      <MuiPickersUtilsProvider utils={DayjsUtils}>
+        <KeyboardDatePicker
+          fullWidth
+          label={label}
+          format="DD/MM/YYYY"
+          inputVariant="outlined"
+          value={value}
+          onChange={onChange}
+          error={!!errors}
+        />
+      </MuiPickersUtilsProvider>
     </GridItem>
   );
 };

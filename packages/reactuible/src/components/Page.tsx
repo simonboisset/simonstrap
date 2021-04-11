@@ -1,6 +1,6 @@
-import { css } from '@emotion/css';
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
-import { DrawerPosition, useDrawer } from './react-mui-kitProvider';
+import { DrawerPosition, Theme, useDrawer } from './MuiKitProvider';
 
 export const Page = ({
   header,
@@ -13,21 +13,22 @@ export const Page = ({
 }) => {
   const { width, variant, position, open } = useDrawer();
   const marge = variant === 'permanent' || (open && variant === 'persistent');
+  const classes = useStyles({ width, marge, position });
   return (
     <>
       {drawer}
       {header}
-      <div className={pageStyle(width, position, marge)}>{children}</div>
+      <div className={classes.page}>{children}</div>
     </>
   );
 };
 
-const pageStyle = (width: number, position: DrawerPosition = 'left', marge?: boolean) => {
-  return css({
-    marginLeft: position === 'left' && marge ? width + 16 : 16,
-    marginBottom: position === 'bottom' && marge ? width + 16 : 16,
-    marginTop: position === 'top' && marge ? width + 16 : 16,
-    marginRight: position === 'right' && marge ? width + 16 : 16,
+const useStyles = makeStyles<Theme, { position?: DrawerPosition; marge?: boolean; width: number }, 'page'>({
+  page: props => ({
+    marginLeft: props.position === 'left' && props.marge ? props.width + 16 : 16,
+    marginBottom: props.position === 'bottom' && props.marge ? props.width + 16 : 16,
+    marginTop: props.position === 'top' && props.marge ? props.width + 16 : 16,
+    marginRight: props.position === 'right' && props.marge ? props.width + 16 : 16,
     transition: 'all 200ms'
-  });
-};
+  })
+});

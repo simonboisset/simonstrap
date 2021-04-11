@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core';
 import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
 
 type InputTextProps = {
@@ -10,19 +10,21 @@ type InputTextProps = {
 } & GridItemProps;
 
 export const InputText = ({ name, label, type, ...rest }: InputTextProps) => {
-  const { errors, control } = useFormContext();
+  const { getInputValue, onInputChange, getInputError } = useForm<any>();
+  const value = getInputValue(name);
+  const onChange = onInputChange(name);
+  const errors = getInputError(name);
   return (
     <GridItem {...rest}>
-      <Controller
-        as={TextField}
-        name={name}
-        control={control}
+      <TextField
         variant="outlined"
         label={label}
         fullWidth
+        value={value}
+        onChange={onChange}
         type={type}
-        error={!!errors[name]}
-        helperText={errors[name]?.message}
+        error={!!errors}
+        helperText={errors?.message}
         defaultValue=""
       />
     </GridItem>

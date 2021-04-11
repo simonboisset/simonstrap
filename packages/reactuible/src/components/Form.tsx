@@ -1,4 +1,4 @@
-import Ajv, { JSONSchemaType, ValidateFunction } from 'ajv';
+import Ajv, { ErrorObject, JSONSchemaType, ValidateFunction } from 'ajv';
 import React, { useContext, useState } from 'react';
 
 const ajv = new Ajv();
@@ -14,6 +14,8 @@ function useFormProvider<T>(schema: JSONSchemaType<T>, defaultValue?: Partial<T>
     setFormValue(nextValue);
     valideForm(nextValue);
   };
+  const getInputValue = (name: keyof T) => formValue[name];
+  const getInputError = (name: keyof T) => (formErrors ? formErrors.filter(err => err.keyword === name)[0] : null);
   const resetForm = () => {
     setFormValue(defaultValue || {});
   };
@@ -29,7 +31,17 @@ function useFormProvider<T>(schema: JSONSchemaType<T>, defaultValue?: Partial<T>
     return isValid;
   };
 
-  return { formValue, setFormValue, setInputValue, resetForm, onInputChange, valideForm, formErrors };
+  return {
+    formValue,
+    setFormValue,
+    setInputValue,
+    resetForm,
+    onInputChange,
+    valideForm,
+    formErrors,
+    getInputValue,
+    getInputError
+  };
 }
 
 type ContextType<T> = {
@@ -40,8 +52,12 @@ type ContextType<T> = {
   onInputChange: (name: keyof T) => (value: T[keyof T]) => void;
   valideForm: (value: Partial<T>) => boolean;
   formErrors: ValidateFunction<T>['errors'];
+  getInputValue: (name: keyof T) => Partial<T>[keyof T];
+  getInputError: (name: keyof T) => ErrorObject<string, Record<string, any>, unknown> | null;
 };
+
 const FormContext = React.createContext({});
+
 type FormProps<T> = { children: React.ReactNode; onSubmit: (data: any) => void; schema: JSONSchemaType<T> };
 
 export function Form<T>({ children, onSubmit, schema }: FormProps<T>) {
@@ -52,10 +68,12 @@ export function Form<T>({ children, onSubmit, schema }: FormProps<T>) {
     </FormContext.Provider>
   );
 }
+
 export function useForm<T>() {
   const value = useContext(FormContext);
   return value as ContextType<T>;
 }
+
 function FormContainer<T>({ children, onSubmit }: { children: React.ReactNode; onSubmit: (data: any) => void }) {
   const { valideForm, formValue } = useForm<T>();
   const validateThenSubmit = () => {
