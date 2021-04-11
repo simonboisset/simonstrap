@@ -13,7 +13,7 @@ import {
   Text,
   useForm,
   yup,
-} from '../simon-ui';
+} from 'react-mui-kit';
 
 const FormSchema = yup.object().shape({
   name: yup.string().required(),

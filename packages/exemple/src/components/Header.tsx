@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppBar, Menu, useDrawer, useMenu } from '../simon-ui';
+import { AppBar, Menu, useDrawer, useMenu } from 'react-mui-kit';
 export const Header = () => {
   const { toogleDrawer } = useDrawer();
   const menu = useMenu();

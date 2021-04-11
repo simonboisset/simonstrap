@@ -1,20 +1,8 @@
-import { css, CSSInterpolation } from '@emotion/css';
 import { ThemeOptions } from '@material-ui/core';
 import { ZIndex } from '@material-ui/core/styles/zIndex';
 import React from 'react';
 import { history, useURL } from 'react-router-url';
-import { Child } from './GridItem';
 import { ThemeProvider } from './ThemeProvider';
-const ReactKitContext = React.createContext(
-  {} as {
-    drawer?: boolean;
-    setDrawer: (open: boolean) => void;
-    modal?: string;
-    setModal: (active?: string) => void;
-    components: ComponentsTheme;
-    theme: Theme;
-  }
-);
 
 export type ComponentsTheme = {
   drawer: { z?: DrawerZindex; variant?: DrawerVariant; position?: DrawerPosition; width: number };
@@ -23,12 +11,12 @@ export type Theme = ThemeOptions & { components: ComponentsTheme };
 export type DrawerVariant = 'permanent' | 'persistent' | 'temporary';
 export type DrawerZindex = 'on' | 'under';
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
-export type ReactKitProviderProps = {
+export type MuiKitProviderProps = {
   theme: Theme;
-  children?: Child;
+  children?: React.ReactNode;
 };
 
-export const ReactKitProvider = ({ children, theme }: ReactKitProviderProps) => {
+const useProvider = (theme: Theme) => {
   const [drawer, setDrawer] = React.useState(false);
   const [modal, setModal] = React.useState<string>();
   let { components, ...MUITheme } = theme;
@@ -43,17 +31,30 @@ export const ReactKitProvider = ({ children, theme }: ReactKitProviderProps) => 
     modal: 1300
   };
   MUITheme.zIndex = zIndex;
+  return { drawer, modal, setDrawer, setModal, components, theme, MUITheme };
+};
+const MuiKitContext = React.createContext(
+  {} as {
+    drawer?: boolean;
+    setDrawer: (open: boolean) => void;
+    modal?: string;
+    setModal: (active?: string) => void;
+    components: ComponentsTheme;
+    theme: Theme;
+  }
+);
+export const MuiKitProviderProvider = ({ children, theme }: MuiKitProviderProps) => {
+  const { MUITheme, ...value } = useProvider(theme);
+
   return (
     <ThemeProvider theme={MUITheme}>
-      <ReactKitContext.Provider value={{ drawer, modal, setDrawer, setModal, components, theme }}>
-        {children}
-      </ReactKitContext.Provider>
+      <MuiKitContext.Provider value={value}>{children}</MuiKitContext.Provider>
     </ThemeProvider>
   );
 };
 
 export const useDrawer = () => {
-  const { drawer, setDrawer, components } = React.useContext(ReactKitContext);
+  const { drawer, setDrawer, components } = React.useContext(MuiKitContext);
 
   const openDrawer = () => {
     setDrawer(true);
@@ -74,7 +75,7 @@ export const useDrawer = () => {
 };
 
 export const useModal = (name: string) => {
-  const { modal, setModal } = React.useContext(ReactKitContext);
+  const { modal, setModal } = React.useContext(MuiKitContext);
 
   const openModal = () => {
     setModal(name);
@@ -101,14 +102,8 @@ export const useModalURL = (pathName: string) => {
   };
   return { open: path === pathName, openModal, closeModal };
 };
-const useStyle = (fct: (thm: Theme) => CSSInterpolation) => {
-  const { theme } = React.useContext(ReactKitContext);
-  return css(fct(theme));
-};
+
 export const useTheme = () => {
-  const { theme } = React.useContext(ReactKitContext);
+  const { theme } = React.useContext(MuiKitContext);
   return theme;
-};
-export const makeCSS = (fct: (thm: Theme) => CSSInterpolation) => {
-  return () => useStyle(fct);
 };

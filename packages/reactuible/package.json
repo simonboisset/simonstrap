@@ -1,5 +1,5 @@
 {
-  "name": "reactuible",
+  "name": "react-mui-kit",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
@@ -12,8 +12,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
     "build": "tsdx build",
+    "up": "yarn upgrade-interactive --latest",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
@@ -39,52 +39,48 @@
     "printWidth": 120
   },
   "author": "Simon Boisset",
-  "module": "dist/reactuible.esm.js",
+  "module": "dist/react-mui-kit.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonboisset/reactuible",
-    "directory": "reactuible"
+    "url": "https://github.com/simonboisset/react-mui-kit",
+    "directory": "react-mui-kit"
   },
   "bugs": {
-    "url": "https://github.com/simonboisset/reactuible/issues"
+    "url": "https://github.com/simonboisset/react-mui-kit/issues"
   },
-  "homepage": "https://github.com/simonboisset/reactuible/tree/master/reactuible",
+  "homepage": "https://github.com/simonboisset/react-mui-kit/tree/master/react-mui-kit",
   "size-limit": [
     {
-      "path": "dist/reactuible.cjs.production.min.js",
+      "path": "dist/react-mui-kit.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/reactuible.esm.js",
+      "path": "dist/react-mui-kit.esm.js",
       "limit": "10 KB"
     }
   ],
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@size-limit/preset-small-lib": "^4.7.0",
-    "@types/react": "^16.9.56",
-    "@types/react-dom": "^16.9.9",
-    "@types/yup": "^0.29.9",
-    "babel-loader": "^8.1.0",
-    "husky": "^4.3.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-is": "^17.0.1",
-    "size-limit": "^4.7.0",
+    "@babel/core": "^7.13.15",
+    "@size-limit/preset-small-lib": "^4.10.2",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "babel-loader": "^8.2.2",
+    "husky": "^6.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
+    "size-limit": "^4.10.2",
     "tsdx": "^0.14.1",
-    "tslib": "^2.0.3",
-    "typescript": "^4.0.5"
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@date-io/dayjs": "1.x",
-    "@emotion/css": "^11.0.0",
-    "@hookform/resolvers": "^1.0.0",
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/pickers": "^3.2.10",
-    "dayjs": "^1.9.5",
-    "react-hook-form": "^6.9.6",
-    "react-router-url": "^0.2.9",
-    "yup": "^0.29.3"
+    "@date-io/dayjs": "2.10.8",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/pickers": "^3.3.10",
+    "ajv": "^8.0.5",
+    "dayjs": "^1.10.4",
+    "react-router-url": "^0.4.0"
   },
   "gitHead": "69592d3d6c5dd4e04440f0281917032a47c861a3"
 }

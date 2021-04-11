@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import { AppBar as AppBarMUI, Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
-import { DrawerPosition, useDrawer } from './SimonProvider';
+import { DrawerPosition, useDrawer } from './react-mui-kitProvider';
 
 type AppBarProps = {
   title?: string;

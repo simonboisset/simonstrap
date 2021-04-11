@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import React from 'react';
-import { DrawerPosition, useDrawer } from './SimonProvider';
+import { DrawerPosition, useDrawer } from './react-mui-kitProvider';
 
 export const Page = ({
   header,

@@ -14,12 +14,11 @@ jobs:
         with:
           node-version: "14"
           registry-url: https://registry.npmjs.org/
-      - name: Publish New Major Version
+      - name: Publish New Version
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           git config --local user.email "simonboisset.dev@gmail.com"
           git config --local user.name "simonboisset"
           yarn
-          lerna bootstrap
           lerna publish patch

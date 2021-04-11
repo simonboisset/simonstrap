@@ -41,7 +41,7 @@ export * from './components/Modal';
 export * from './components/Page';
 export * from './components/PageRouter';
 export * from './components/Paper';
-export * from './components/SimonProvider';
+export * from './components/react-mui-kitProvider';
 export * from './components/Text';
 export * from './components/ThemeProvider';
 export * from './utils/useForm';

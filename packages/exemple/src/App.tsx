@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { PageRouter, ReactKitProvider, Redirect, Text, Theme } from 'react-mui-kit';
 import { Header } from './components/Header';
 import { NavBar } from './components/NavBar';
 import { FormPage } from './pages/FormPage';
 import { ModalPage } from './pages/ModalPage';
 import { RouterPage } from './pages/RouterPage';
-import { PageRouter, Redirect, SimonProvider, Text, Theme } from './simon-ui';
 
 const theme: Theme = {
   palette: {
@@ -27,14 +27,13 @@ const theme: Theme = {
 
 function App() {
   return (
-    <SimonProvider theme={theme}>
+    <ReactKitProvider theme={theme}>
       <PageRouter
         header={<Header />}
         drawer={<NavBar />}
         routes={[
           {
             path: '/',
-            exact: true,
             component: <Text variant="h3">Simon UI</Text>,
             routes: [
               { path: '/redirect', component: <Redirect to="/" /> },
@@ -47,7 +46,7 @@ function App() {
           },
         ]}
       />
-    </SimonProvider>
+    </ReactKitProvider>
   );
 }
 export default App;

@@ -1,4 +1,4 @@
-# reactuible
+# react-mui-kit
 
 React Components based on [material-ui](https://material-ui.com/)
 
@@ -11,7 +11,7 @@ I choosed to include material-ui for ui, react-hook-form for forms, yup for sche
 # Install
 
 ```sh
-yarn add reactuible
+yarn add react-mui-kit
 ```
 
 # Get Started
@@ -19,7 +19,7 @@ yarn add reactuible
 use the context provider for theming and hooks.
 
 ```jsx
-import { ReactKitProvider, Theme } from 'reactuible';
+import { ReactKitProvider, Theme } from 'react-mui-kit';
 
 const theme: Theme = {
   palette: {
@@ -50,7 +50,7 @@ Theme is use the material-ui [theme](https://material-ui.com/customization/themi
 Fore routing I use [react-router-url](https://github.com/simonboisset/react-router-url/tree/main/react-router-url)
 
 ```jsx
-import { PageRouter, Text, Redirect } from 'reactuible';
+import { PageRouter, Text, Redirect } from 'react-mui-kit';
 
 <PageRouter
   header={<Header />}
@@ -92,7 +92,7 @@ import {
   Text,
   useForm,
   yup,
-} from "reactuible";
+} from "react-mui-kit";
 
 const genders = [
   { name: "Male", value: "male" },
@@ -150,7 +150,7 @@ export const FormPage = () => {
 # Modal
 
 ```jsx
-import { Button, Container, Modal, Text, useForm, useModalURL } from 'reactuible';
+import { Button, Container, Modal, Text, useForm, useModalURL } from 'react-mui-kit';
 
 export const ModalPage = () => {
   // Use this to use context

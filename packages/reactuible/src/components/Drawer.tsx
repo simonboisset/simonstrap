@@ -2,7 +2,7 @@ import { css } from '@emotion/css';
 import { Drawer as DrawerUI, List, Toolbar } from '@material-ui/core';
 import React from 'react';
 import { Child } from './GridItem';
-import { useDrawer } from './SimonProvider';
+import { useDrawer } from './react-mui-kitProvider';
 
 type DrawerProps = {
   children?: Child;
