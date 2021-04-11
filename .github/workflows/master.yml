@@ -22,4 +22,4 @@ jobs:
           git config --local user.name "simonboisset"
           yarn
           lerna bootstrap
-          lerna publish patch --yes --legacy-auth ${NODE_AUTH_TOKEN}
+          lerna publish patch --yes --no-verify-access
