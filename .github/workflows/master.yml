@@ -13,10 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14"
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
       - name: Publish New Version
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           git config --local user.email "simonboisset.dev@gmail.com"
           git config --local user.name "simonboisset"
