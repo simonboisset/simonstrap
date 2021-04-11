@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { PageRouter, ReactKitProvider, Redirect, Text, Theme } from 'react-mui-kit';
+import { MuiKitProviderProvider, PageRouter, Redirect, Text, Theme } from 'react-mui-kit';
 import { Header } from './components/Header';
 import { NavBar } from './components/NavBar';
 import { FormPage } from './pages/FormPage';
@@ -27,7 +26,7 @@ const theme: Theme = {
 
 function App() {
   return (
-    <ReactKitProvider theme={theme}>
+    <MuiKitProviderProvider theme={theme}>
       <PageRouter
         header={<Header />}
         drawer={<NavBar />}
@@ -46,7 +45,7 @@ function App() {
           },
         ]}
       />
-    </ReactKitProvider>
+    </MuiKitProviderProvider>
   );
 }
 export default App;

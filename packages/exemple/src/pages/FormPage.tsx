@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Button,
   Container,
@@ -10,17 +9,28 @@ import {
   InputSlider,
   InputSwitch,
   InputText,
+  JSONSchemaType,
   Text,
-  useForm,
-  yup,
 } from 'react-mui-kit';
 
-const FormSchema = yup.object().shape({
-  name: yup.string().required(),
-  age: yup.number().positive().integer().required(),
-  gender: yup.string().matches(/(male|female)/),
-  poids: yup.number().positive().integer().required(),
-});
+type FormType = {
+  name: string;
+  age: number;
+  gender: 'male' | 'female';
+  poids: number;
+};
+
+const FormSchema: JSONSchemaType<FormType> = {
+  type: 'object',
+  properties: {
+    name: { type: 'string' },
+    age: { type: 'number', minimum: 0 },
+    gender: { type: 'string', enum: ['male', 'female'] },
+    poids: { type: 'number', minimum: 0 },
+  },
+  required: ['name', 'age', 'gender', 'poids'],
+  additionalProperties: false,
+};
 
 const genders = [
   { name: 'male', value: 'male' },
@@ -36,12 +46,10 @@ const pets = [
 ];
 
 export const FormPage = () => {
-  const methods = useForm(FormSchema);
-
   const handleSubmit = (data: FormData) => {};
 
   return (
-    <Form methods={methods} onSubmit={handleSubmit}>
+    <Form schema={FormSchema} onSubmit={handleSubmit}>
       <Container>
         <Text variant="h3">Formulaire</Text>
         <InputText name="name" label="Name" xs={8} />

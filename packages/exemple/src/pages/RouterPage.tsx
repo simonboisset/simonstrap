@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Button, Container, history, Paper, Router, Text } from 'react-mui-kit';
 
 export const RouterPage = () => {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Button,
   Container,
@@ -13,19 +12,30 @@ import {
   InputSlider,
   InputSwitch,
   InputText,
+  JSONSchemaType,
   Modal,
   Text,
-  useForm,
   useModalURL,
-  yup,
 } from 'react-mui-kit';
 
-const FormSchema = yup.object().shape({
-  name: yup.string().required(),
-  age: yup.number().positive().integer().required(),
-  gender: yup.string().matches(/(male|female)/),
-  poids: yup.number().positive().integer().required(),
-});
+type FormType = {
+  name: string;
+  age: number;
+  gender: 'male' | 'female';
+  poids: number;
+};
+
+const FormSchema: JSONSchemaType<FormType> = {
+  type: 'object',
+  properties: {
+    name: { type: 'string' },
+    age: { type: 'number', minimum: 0 },
+    gender: { type: 'string', enum: ['male', 'female'] },
+    poids: { type: 'number', minimum: 0 },
+  },
+  required: ['name', 'age', 'gender', 'poids'],
+  additionalProperties: false,
+};
 
 const genders = [
   { name: 'male', value: 'male' },
@@ -43,14 +53,13 @@ const pets = [
 export const ModalPage = () => {
   // const { open, openModal, closeModal } = useModal('form-modal');
   const { open, openModal, closeModal } = useModalURL('/modal/open');
-  const methods = useForm(FormSchema);
 
   return (
     <Container>
       <Text variant="h3">Modal</Text>
       <Button onClick={openModal}>Open</Button>
       <Modal open={open} onClose={closeModal}>
-        <Form methods={methods} onSubmit={() => {}}>
+        <Form schema={FormSchema} onSubmit={() => {}}>
           <DialogTitle>Formulaire</DialogTitle>
           <DialogContent>
             <Container>

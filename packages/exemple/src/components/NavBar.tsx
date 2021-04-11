@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Divider, Drawer, ItemLink } from 'react-mui-kit';
 
 export const NavBar = () => {
