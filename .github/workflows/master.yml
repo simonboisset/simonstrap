@@ -21,4 +21,4 @@ jobs:
           git config --local user.email "simonboisset.dev@gmail.com"
           git config --local user.name "simonboisset"
           yarn
-          lerna publish patch
+          lerna publish patch --yes
