@@ -6,48 +6,19 @@ import {
   DialogTitle,
   Form,
   InputCheckBox,
+  InputCheckBoxList,
   InputDate,
   InputRadio,
   InputSelect,
   InputSlider,
+  InputSwitch,
+  InputSwitchList,
   InputText,
-  JSONSchemaType,
   Modal,
   Text,
   useModalURL
 } from 'react-mui-kit';
-
-type FormType = {
-  name: string;
-  age: number;
-  gender: 'male' | 'female';
-  poids: number;
-};
-
-const FormSchema: JSONSchemaType<FormType> = {
-  type: 'object',
-  properties: {
-    name: { type: 'string' },
-    age: { type: 'number', minimum: 0 },
-    gender: { type: 'string', enum: ['male', 'female'] },
-    poids: { type: 'number', minimum: 0 }
-  },
-  required: ['name', 'age', 'gender', 'poids'],
-  additionalProperties: false
-};
-
-const genders = [
-  { name: 'male', value: 'male' },
-  { name: 'female', value: 'female' }
-];
-
-const pets = [
-  { label: 'Chat', name: 'cat' },
-  { label: 'Chien', name: 'dog' },
-  { label: 'Souris', name: 'mousse' },
-  { label: 'Poisson', name: 'fish' },
-  { label: 'Oiseau', name: 'bird' }
-];
+import { FormSchema, genders, pets } from './FormPage';
 
 export const ModalPage = () => {
   // const { open, openModal, closeModal } = useModal('form-modal');
@@ -68,10 +39,10 @@ export const ModalPage = () => {
               <InputDate name="birthDate" label="Date de naissance" xs={8} />
               <InputRadio name="gender" label="Gender" items={genders} xs={4} />
               <InputSlider name="poids" label="Poids" xs={8} />
-              {/* <InputSwitch name="pets" label="Annimaux" items={pets} /> */}
-              {/* <InputCheckBox name="pets" label="Annimaux" items={pets} /> */}
+              <InputSwitchList name="pets" label="Annimaux" items={pets} />
+              <InputCheckBoxList name="pets" label="Annimaux" items={pets} />
               <InputCheckBox name="conditions" label="J'accepte les condition générales" />
-              {/* <InputSwitch name="conditions" label="J'accepte les condition générales" /> */}
+              <InputSwitch name="conditions" label="J'accepte les condition générales" />
             </Container>
           </DialogContent>
           <DialogActions>

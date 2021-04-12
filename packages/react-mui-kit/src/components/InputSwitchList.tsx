@@ -12,13 +12,13 @@ export type renderControlerProps = {
   name: string;
   ref: React.MutableRefObject<any>;
 };
-type InputSwitchProps<T> = {
+type InputSwitchListProps<T> = {
   name: keyof T;
   label?: string;
   items: ItemSwitchType[];
   direction?: Direction;
 } & GridItemProps;
-export function InputSwitch<T>({ name, label, items, direction, ...rest }: InputSwitchProps<T>) {
+export function InputSwitchList<T>({ name, label, items, direction, ...rest }: InputSwitchListProps<T>) {
   const classes = useDirectionStyle({ direction });
   const { getInputValue, onInputChange, getInputError } = useForm<T, boolean[]>();
   const values = getInputValue(name) || items.map(_ => false);

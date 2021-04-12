@@ -6,14 +6,14 @@ import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemCheckBoxType = { label?: string; name?: string; icon?: string };
 
-type InputCheckBoxProps<T> = {
+type InputCheckBoxListProps<T> = {
   name: keyof T;
   label?: string;
   items: ItemCheckBoxType[];
   direction?: Direction;
 } & GridItemProps;
 
-export function InputCheckBox<T>({ name, label, items, direction, ...rest }: InputCheckBoxProps<T>) {
+export function InputCheckBoxList<T>({ name, label, items, direction, ...rest }: InputCheckBoxListProps<T>) {
   const classes = useDirectionStyle({ direction });
   const { getInputValue, onInputChange, getInputError } = useForm<T, boolean[]>();
   const values = getInputValue(name) || items.map(_ => false);

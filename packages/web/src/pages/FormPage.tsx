@@ -3,27 +3,29 @@ import {
   Container,
   Form,
   InputCheckBox,
+  InputCheckBoxList,
   InputDate,
   InputRadio,
   InputSelect,
   InputSlider,
   InputSwitch,
+  InputSwitchList,
   InputText,
   JSONSchemaType,
-  Text,
-  useForm
+  Text
 } from 'react-mui-kit';
 
-type FormType = {
+export type FormType = {
   name: string;
   age: number;
   gender: 'male' | 'female';
   poids: number;
   birthDate: string;
   conditions: boolean;
+  pets: Pet[];
 };
-
-const FormSchema: JSONSchemaType<FormType> = {
+type Pet = 'cat' | 'dog' | 'mousse' | 'fish' | 'bird';
+export const FormSchema: JSONSchemaType<FormType> = {
   type: 'object',
   properties: {
     name: { type: 'string' },
@@ -31,18 +33,19 @@ const FormSchema: JSONSchemaType<FormType> = {
     gender: { type: 'string', enum: ['male', 'female'] },
     poids: { type: 'number', minimum: 0 },
     conditions: { type: 'boolean' },
-    birthDate: { type: 'string', format: 'date' }
+    birthDate: { type: 'string', format: 'date' },
+    pets: { type: 'array', items: { type: 'string', enum: ['cat', 'dog', 'mousse', 'fish', 'bird'] } }
   },
-  required: ['name', 'age', 'gender', 'poids', 'conditions', 'birthDate'],
+  required: ['name', 'age', 'gender', 'poids', 'conditions', 'birthDate', 'pets'],
   additionalProperties: false
 };
 
-const genders = [
+export const genders = [
   { name: 'male', value: 'male' },
   { name: 'female', value: 'female' }
 ];
 
-const pets = [
+export const pets = [
   { label: 'Chat', name: 'cat' },
   { label: 'Chien', name: 'dog' },
   { label: 'Souris', name: 'mousse' },
@@ -55,7 +58,6 @@ export const FormPage = () => {
 
   return (
     <Form schema={FormSchema} onSubmit={handleSubmit}>
-      <Logger />
       <Container>
         <Text variant="h3">Formulaire</Text>
         <InputText name="name" label="Name" xs={8} />
@@ -64,8 +66,8 @@ export const FormPage = () => {
         <InputDate name="birthDate" label="Date de naissance" xs={8} />
         <InputRadio name="gender" label="Gender" items={genders} xs={4} />
         <InputSlider name="poids" label="Poids" xs={8} />
-        {/* <InputSwitch name="pets" label="Annimaux" items={pets} /> */}
-        {/* <InputCheckBox name="pets" label="Annimaux" items={pets} /> */}
+        <InputSwitchList name="pets" label="Annimaux" items={pets} />
+        <InputCheckBoxList name="pets" label="Annimaux" items={pets} />
         <InputCheckBox name="conditions" label="J'accepte les condition générales" />
         <InputSwitch name="conditions" label="J'accepte les condition générales" />
         <Button variant="contained" color="secondary" xs={6}>
@@ -77,10 +79,4 @@ export const FormPage = () => {
       </Container>
     </Form>
   );
-};
-const Logger = () => {
-  const { formValue, getInputValue } = useForm<FormType>();
-  console.log(formValue);
-
-  return <div></div>;
 };

@@ -15,7 +15,7 @@ export {
   LinearProgress,
   Snackbar,
   Tab,
-  Tabs
+  Tabs,
 } from '@material-ui/core';
 export { JSONSchemaType } from 'ajv';
 export { history, Redirect, Router, useURL } from 'react-router-url';
@@ -27,11 +27,13 @@ export * from './components/Form';
 export * from './components/GridItem';
 export * from './components/IconButton';
 export * from './components/InputCheckBox';
+export * from './components/InputCheckBoxList';
 export * from './components/InputDate';
 export * from './components/InputRadio';
 export * from './components/InputSelect';
 export * from './components/InputSlider';
 export * from './components/InputSwitch';
+export * from './components/InputSwitchList';
 export * from './components/InputText';
 export * from './components/Item';
 export * from './components/ItemLink';
