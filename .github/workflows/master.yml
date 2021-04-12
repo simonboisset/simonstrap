@@ -25,7 +25,7 @@ jobs:
           lerna publish patch --yes --no-verify-access
           lerna run deploy
           rm -Rf docs
-          cp -r ./packages/web/build .
-          mv build docs
+          mv ./packages/web/build ./docs
+          git add .
           git commit -a -m "Publish Website"
           git push origin master
