@@ -23,8 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "up": "yarn upgrade-interactive --latest",
-    "predeploy": "react-scripts build",
-    "deploy": "gh-pages -d build"
+    "deploy": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [

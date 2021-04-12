@@ -8,20 +8,20 @@ import { RouterPage } from './pages/RouterPage';
 const theme: Theme = {
   palette: {
     primary: {
-      main: '#81c784',
+      main: '#81c784'
     },
     secondary: {
-      main: '#e57373',
-    },
+      main: '#e57373'
+    }
   },
   components: {
     drawer: {
       variant: 'persistent',
       z: 'on',
       width: 300,
-      position: 'left',
-    },
-  },
+      position: 'left'
+    }
+  }
 };
 
 function App() {
@@ -33,16 +33,16 @@ function App() {
         routes={[
           {
             path: '/',
-            component: <Text variant="h3">Simon UI</Text>,
+            component: <Text variant="h3">React Mui Kit</Text>,
             routes: [
               { path: '/redirect', component: <Redirect to="/" /> },
               { path: '/form', component: <FormPage /> },
               { path: '/router', component: <RouterPage /> },
               { path: '/modal', component: <ModalPage /> },
               { path: '/menu', component: <RouterPage /> },
-              { path: '/router', component: <RouterPage /> },
-            ],
-          },
+              { path: '/router', component: <RouterPage /> }
+            ]
+          }
         ]}
       />
     </MuiKitProviderProvider>
