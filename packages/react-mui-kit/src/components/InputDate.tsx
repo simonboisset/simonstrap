@@ -6,14 +6,16 @@ import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemDateType<T> = { name?: string; value: T; icon?: string };
 
-type InputDateProps = {
-  name: string;
+type InputDateProps<T> = {
+  name: keyof T;
   label?: string;
 } & GridItemProps;
 
-export const InputDate = ({ name, label, ...rest }: InputDateProps) => {
-  const { getInputValue, onInputChange, getInputError } = useForm<any>();
-  const value = getInputValue(name);
+export function InputDate<T>({ name, label, ...rest }: InputDateProps<T>) {
+  const { getInputValue, onInputChange, getInputError } = useForm<T, Date>();
+  const inputValue = getInputValue(name);
+  const value = inputValue ? inputValue.toISOString() : null;
+
   const onChange = onInputChange(name);
   const errors = getInputError(name);
   return (
@@ -21,14 +23,15 @@ export const InputDate = ({ name, label, ...rest }: InputDateProps) => {
       <MuiPickersUtilsProvider utils={DayjsUtils}>
         <KeyboardDatePicker
           fullWidth
+          focused={!!inputValue}
           label={label}
           format="DD/MM/YYYY"
           inputVariant="outlined"
           value={value}
-          onChange={onChange}
+          onChange={e => onChange(e?.toDate())}
           error={!!errors}
         />
       </MuiPickersUtilsProvider>
     </GridItem>
   );
-};
+}

@@ -6,12 +6,12 @@ import { GridItem, GridItemProps } from './GridItem';
 type InputTextProps = {
   name: string;
   label?: string;
-  type?: 'password';
+  type?: 'password' | 'number';
 } & GridItemProps;
 
 export const InputText = ({ name, label, type, ...rest }: InputTextProps) => {
   const { getInputValue, onInputChange, getInputError } = useForm<any>();
-  const value = getInputValue(name);
+  const value = getInputValue(name) || '';
   const onChange = onInputChange(name);
   const errors = getInputError(name);
   return (
@@ -21,11 +21,10 @@ export const InputText = ({ name, label, type, ...rest }: InputTextProps) => {
         label={label}
         fullWidth
         value={value}
-        onChange={onChange}
-        type={type}
+        onChange={e => onChange(type === 'number' ? Number(e.target.value) : e.target.value)}
+        type={type === 'number' ? undefined : type}
         error={!!errors}
         helperText={errors?.message}
-        defaultValue=""
       />
     </GridItem>
   );

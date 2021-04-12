@@ -4,16 +4,16 @@ import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemSliderType<T> = { name?: string; value: T; icon?: string };
-type InputSliderProps = {
-  name: string;
+type InputSliderProps<T> = {
+  name: keyof T;
   label?: string;
   min?: number;
   max?: number;
   step?: number;
 } & GridItemProps;
-export const InputSlider = ({ name, label, step, max = 100, min = 0, ...rest }: InputSliderProps) => {
-  const { getInputValue, onInputChange, getInputError } = useForm<any>();
-  const value = getInputValue(name);
+export function InputSlider<T>({ name, label, step, max = 100, min = 0, ...rest }: InputSliderProps<T>) {
+  const { getInputValue, onInputChange, getInputError } = useForm<T, number | number[]>();
+  const value = getInputValue(name) || 0;
   const onChange = onInputChange(name);
   const errors = getInputError(name);
   return (
@@ -32,4 +32,4 @@ export const InputSlider = ({ name, label, step, max = 100, min = 0, ...rest }: 
       <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
     </GridItem>
   );
-};
+}

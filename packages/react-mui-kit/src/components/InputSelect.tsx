@@ -11,14 +11,14 @@ type InputSelectProps = {
 } & GridItemProps;
 export const InputSelect = ({ name, label, items, ...rest }: InputSelectProps) => {
   const { getInputValue, onInputChange, getInputError } = useForm<any>();
-  const value = getInputValue(name);
+  const value = getInputValue(name) || '';
   const onChange = onInputChange(name);
   const errors = getInputError(name);
   return (
     <GridItem {...rest}>
       <FormControl variant="outlined" fullWidth>
         <InputLabel>{label}</InputLabel>
-        <Select value={value} onChange={onChange} label={label} error={!!errors}>
+        <Select value={value} onChange={e => onChange(e.target.value)} label={label} error={!!errors}>
           <MenuItem value={undefined} disabled>
             {label}
           </MenuItem>

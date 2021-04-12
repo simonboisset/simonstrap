@@ -1,10 +1,25 @@
 import Ajv, { ErrorObject, JSONSchemaType, ValidateFunction } from 'ajv';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 
 const ajv = new Ajv();
+ajv.addFormat('date', (date: string) => {
+  return !isNaN(Date.parse(date));
+});
 
-function useFormProvider<T>(schema: JSONSchemaType<T>, defaultValue?: Partial<T>) {
-  const [formValue, setFormValue] = useState<Partial<T>>(defaultValue || {});
+function getDefaultValue<T>(schema: JSONSchemaType<T>) {
+  let defaultValue: Partial<T> = {};
+  for (const key in schema.properties) {
+    if (schema.properties[key].default) {
+      //@ts-ignore
+      defaultValue[key] = schema.properties[key].default;
+    }
+  }
+  return defaultValue;
+}
+
+function useFormProvider<T>(schema: JSONSchemaType<T>) {
+  const defaultValue = useMemo(() => getDefaultValue(schema), []);
+  const [formValue, setFormValue] = useState<Partial<T>>(defaultValue);
   const [formErrors, setFormErrors] = useState<ValidateFunction<T>['errors']>(null);
   const setInputValue = (name: keyof T, value: T[typeof name]) => {
     setFormValue({ ...formValue, [name]: value });
@@ -14,10 +29,10 @@ function useFormProvider<T>(schema: JSONSchemaType<T>, defaultValue?: Partial<T>
     setFormValue(nextValue);
     valideForm(nextValue);
   };
-  const getInputValue = (name: keyof T) => formValue[name];
+  const getInputValue = (name: keyof T): Partial<T>[keyof T] | undefined => formValue[name];
   const getInputError = (name: keyof T) => (formErrors ? formErrors.filter(err => err.keyword === name)[0] : null);
   const resetForm = () => {
-    setFormValue(defaultValue || {});
+    setFormValue(defaultValue);
   };
 
   const validate = ajv.compile(schema);
@@ -44,15 +59,15 @@ function useFormProvider<T>(schema: JSONSchemaType<T>, defaultValue?: Partial<T>
   };
 }
 
-type ContextType<T> = {
+type ContextType<T = any, I = T[keyof T]> = {
   formValue: Partial<T>;
   setFormValue: React.Dispatch<React.SetStateAction<Partial<T>>>;
-  setInputValue: (name: keyof T, value: T[keyof T]) => void;
+  setInputValue: (name: keyof T, value: T[typeof name] | undefined) => void;
   resetForm: () => void;
-  onInputChange: (name: keyof T) => (value: T[keyof T]) => void;
+  onInputChange: (name: keyof T) => (value: I | undefined) => void;
   valideForm: (value: Partial<T>) => boolean;
   formErrors: ValidateFunction<T>['errors'];
-  getInputValue: (name: keyof T) => Partial<T>[keyof T];
+  getInputValue: (name: keyof T) => I | undefined;
   getInputError: (name: keyof T) => ErrorObject<string, Record<string, any>, unknown> | null;
 };
 
@@ -69,9 +84,9 @@ export function Form<T>({ children, onSubmit, schema }: FormProps<T>) {
   );
 }
 
-export function useForm<T>() {
+export function useForm<T, I = unknown>() {
   const value = useContext(FormContext);
-  return value as ContextType<T>;
+  return value as ContextType<T, I>;
 }
 
 function FormContainer<T>({ children, onSubmit }: { children: React.ReactNode; onSubmit: (data: any) => void }) {

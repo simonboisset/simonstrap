@@ -16,14 +16,14 @@ type InputDateProps = {
 export const InputRadio = ({ name, label, items, direction, ...rest }: InputDateProps) => {
   const classes = useDirectionStyle({ direction });
   const { getInputValue, onInputChange, getInputError } = useForm<any>();
-  const value = getInputValue(name);
+  const value = getInputValue(name) || '';
   const onChange = onInputChange(name);
   const errors = getInputError(name);
   return (
     <GridItem {...rest}>
       <FormControl component="fieldset">
         <FormLabel component="legend">{label}</FormLabel>
-        <RadioGroup value={value} onChange={onChange}>
+        <RadioGroup value={value} onChange={e => onChange(e.target.value)}>
           <div className={classes.direction}>
             {items.map(item => (
               <FormControlLabel key={item.value} value={item.value} control={<Radio />} label={item.name} />
