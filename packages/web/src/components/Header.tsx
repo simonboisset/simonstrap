@@ -4,7 +4,7 @@ export const Header = () => {
   const menu = useMenu();
   return (
     <AppBar
-      title="Simon UI"
+      title="React MUI Kit"
       leftElements={
         <Menu
           {...menu}
@@ -12,7 +12,7 @@ export const Header = () => {
           edge="start"
           items={[
             { label: 'Drawer', onClick: toogleDrawer },
-            { label: 'Logout', onClick: () => {} },
+            { label: 'Logout', onClick: () => {} }
           ]}
         />
       }
