@@ -22,7 +22,9 @@ jobs:
           git config --local user.name "simonboisset"
           yarn
           lerna run build
+          lerna publish patch --yes --no-verify-access
           lerna run deploy
           rm -Rf docs
           mv ./packages/web/build ./docs
-          lerna publish patch --yes --no-verify-access
+          git commit -a -m "Publish Website"
+          git push origin master
