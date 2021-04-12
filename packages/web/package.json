@@ -1,6 +1,6 @@
 {
   "name": "react-mui-kit-website",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
@@ -12,7 +12,7 @@
     "@types/react-dom": "^17.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-mui-kit": "^0.2.12",
+    "react-mui-kit": "^0.2.13",
     "react-scripts": "4.0.3",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
