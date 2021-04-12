@@ -4,7 +4,7 @@ export const Header = () => {
   const menu = useMenu();
   return (
     <AppBar
-      title="React MUI Kit"
+      title="React Mui Kit"
       leftElements={
         <Menu
           {...menu}

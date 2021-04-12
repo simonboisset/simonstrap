@@ -16,7 +16,8 @@
       "**/webpack",
       "**/babel-loader",
       "**/jest",
-      "**/react-scripts"
+      "**/react-scripts",
+      "**/eslint"
     ]
   },
   "devDependencies": {
