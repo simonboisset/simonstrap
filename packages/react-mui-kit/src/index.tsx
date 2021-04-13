@@ -1,5 +1,3 @@
-import { JSONSchemaType } from 'ajv';
-
 export {
   Avatar,
   Badge,
@@ -46,5 +44,4 @@ export * from './components/PageRouter';
 export * from './components/Paper';
 export * from './components/Text';
 export * from './components/ThemeProvider';
-
-export type Schema<T> = JSONSchemaType<T, false>;
+export * from './types/Schema';

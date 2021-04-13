@@ -1,12 +1,13 @@
-import Ajv, { ErrorObject, JSONSchemaType, ValidateFunction } from 'ajv';
+import Ajv, { ErrorObject, ValidateFunction } from 'ajv';
 import React, { useContext, useMemo, useState } from 'react';
+import { Schema } from '../types/Schema';
 
 const ajv = new Ajv();
 ajv.addFormat('date', (date: string) => {
   return !isNaN(Date.parse(date));
 });
 
-function getDefaultValue<T>(schema: JSONSchemaType<T>) {
+function getDefaultValue<T>(schema: Schema<T>) {
   let defaultValue: Partial<T> = {};
   for (const key in schema.properties) {
     if (schema.properties[key].default) {
@@ -17,7 +18,7 @@ function getDefaultValue<T>(schema: JSONSchemaType<T>) {
   return defaultValue;
 }
 
-function useFormProvider<T>(schema: JSONSchemaType<T>) {
+function useFormProvider<T>(schema: Schema<T>) {
   const defaultValue = useMemo(() => getDefaultValue(schema), []);
   const [formValue, setFormValue] = useState<Partial<T>>(defaultValue);
   const [formErrors, setFormErrors] = useState<ValidateFunction<T>['errors']>(null);
@@ -73,7 +74,7 @@ type ContextType<T = any, I = T[keyof T]> = {
 
 const FormContext = React.createContext({});
 
-type FormProps<T> = { children: JSX.Element; onSubmit: (data: any) => void; schema: JSONSchemaType<T> };
+type FormProps<T> = { children: JSX.Element; onSubmit: (data: any) => void; schema: Schema<T> };
 
 export function Form<T>({ children, onSubmit, schema }: FormProps<T>) {
   const value = useFormProvider<T>(schema);
