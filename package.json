@@ -15,7 +15,7 @@
     ],
     "nohoist": [
       "**/webpack",
-      "**/babel-loader",
+      "**/babel-*",
       "**/jest",
       "**/react-scripts",
       "**/eslint"
