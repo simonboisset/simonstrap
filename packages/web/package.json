@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "up": "yarn upgrade-interactive --latest",
-    "build": "react-scripts build"
+    "deploy": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
