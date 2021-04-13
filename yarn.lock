@@ -12858,6 +12858,7 @@ react-refresh@^0.8.3:
 
 react-router-url@^0.5.4:
   version "0.5.4"
+  resolved "https://registry.yarnpkg.com/react-router-url/-/react-router-url-0.5.4.tgz#cf007ee3f2016df23f4871cee690b7d31ca8e31a"
   integrity sha512-v38Er/baFH/WMdS4wrMgR7SJg2EnqzImSb/vUuhNig9U8razFY2rtxxUAHwWUL3Q0SWZ9Ho0b8bRrl6oMOxi3w==
   dependencies:
     react-hook-url "^0.5.4"
