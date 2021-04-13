@@ -1,6 +1,6 @@
 {
   "name": "react-mui-kit",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
