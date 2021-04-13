@@ -81,7 +81,7 @@
     "@material-ui/pickers": "^3.3.10",
     "ajv": "^8.1.0",
     "dayjs": "^1.10.4",
-    "react-router-url": "^0.5.4"
+    "react-router-url": "^0.5.5"
   },
   "gitHead": "69592d3d6c5dd4e04440f0281917032a47c861a3"
 }
