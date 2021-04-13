@@ -1,3 +1,5 @@
+import { JSONSchemaType } from 'ajv';
+
 export {
   Avatar,
   Badge,
@@ -17,7 +19,6 @@ export {
   Tab,
   Tabs,
 } from '@material-ui/core';
-export { JSONSchemaType } from 'ajv';
 export { history, location, Redirect, Router, useURL } from 'react-router-url';
 export * from './components/AppBar';
 export * from './components/Button';
@@ -45,3 +46,5 @@ export * from './components/PageRouter';
 export * from './components/Paper';
 export * from './components/Text';
 export * from './components/ThemeProvider';
+
+export type Schema<T> = JSONSchemaType<T, false>;

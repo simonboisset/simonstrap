@@ -11,7 +11,7 @@ import {
   InputSwitch,
   InputSwitchList,
   InputText,
-  JSONSchemaType,
+  Schema,
   Text
 } from 'react-mui-kit';
 
@@ -25,7 +25,7 @@ export type FormType = {
   pets: Pet[];
 };
 type Pet = 'cat' | 'dog' | 'mousse' | 'fish' | 'bird';
-export const FormSchema: JSONSchemaType<FormType> = {
+export const FormSchema: Schema<FormType> = {
   type: 'object',
   properties: {
     name: { type: 'string' },
