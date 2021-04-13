@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { location } from '../../react-mui-kit/dist';
+import { location } from 'react-mui-kit/src';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
