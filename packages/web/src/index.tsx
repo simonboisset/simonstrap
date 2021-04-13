@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { location } from '../../react-mui-kit/dist';
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
+if (process.env.NODE_ENV === 'production') {
+  location.init('https://simonboisset.github.io/react-mui-kit/');
+}
 
 ReactDOM.render(
   <React.StrictMode>

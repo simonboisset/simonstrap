@@ -18,7 +18,7 @@ export {
   Tabs,
 } from '@material-ui/core';
 export { JSONSchemaType } from 'ajv';
-export { history, Redirect, Router, useURL } from 'react-router-url';
+export { history, location, Redirect, Router, useURL } from 'react-router-url';
 export * from './components/AppBar';
 export * from './components/Button';
 export * from './components/Container';
