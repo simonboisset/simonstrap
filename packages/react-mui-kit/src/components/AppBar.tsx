@@ -4,8 +4,8 @@ import { DrawerPosition, Theme, useDrawer } from './MuiKitProvider';
 
 type AppBarProps = {
   title?: string;
-  leftElements?: React.ReactNode;
-  rigthElements?: React.ReactNode;
+  leftElements?: JSX.Element;
+  rigthElements?: JSX.Element;
   className?: string;
 };
 

@@ -6,7 +6,8 @@
     "build": "lerna run build",
     "start": "lerna run start",
     "changed": "lerna changed",
-    "clean": "lerna clean"
+    "clean": "lerna clean",
+    "type-check": "lerna run type-check"
   },
   "workspaces": {
     "packages": [

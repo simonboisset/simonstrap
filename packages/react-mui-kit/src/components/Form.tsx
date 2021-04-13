@@ -73,7 +73,7 @@ type ContextType<T = any, I = T[keyof T]> = {
 
 const FormContext = React.createContext({});
 
-type FormProps<T> = { children: React.ReactNode; onSubmit: (data: any) => void; schema: JSONSchemaType<T> };
+type FormProps<T> = { children: JSX.Element; onSubmit: (data: any) => void; schema: JSONSchemaType<T> };
 
 export function Form<T>({ children, onSubmit, schema }: FormProps<T>) {
   const value = useFormProvider<T>(schema);
@@ -89,7 +89,7 @@ export function useForm<T, I = unknown>() {
   return value as ContextType<T, I>;
 }
 
-function FormContainer<T>({ children, onSubmit }: { children: React.ReactNode; onSubmit: (data: any) => void }) {
+function FormContainer<T>({ children, onSubmit }: { children: JSX.Element; onSubmit: (data: any) => void }) {
   const { valideForm, formValue } = useForm<T>();
   const validateThenSubmit = () => {
     const isValid = valideForm(formValue);

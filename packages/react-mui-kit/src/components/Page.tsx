@@ -9,7 +9,7 @@ export const Page = ({
 }: {
   header?: JSX.Element;
   drawer?: JSX.Element;
-  children: React.ReactNode;
+  children: JSX.Element;
 }) => {
   const { width, variant, position, open } = useDrawer();
   const marge = variant === 'permanent' || (open && variant === 'persistent');

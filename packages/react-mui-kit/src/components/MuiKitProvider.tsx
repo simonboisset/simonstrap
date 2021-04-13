@@ -13,7 +13,7 @@ export type DrawerZindex = 'on' | 'under';
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
 export type MuiKitProviderProps = {
   theme: Theme;
-  children?: React.ReactNode;
+  children?: JSX.Element;
 };
 
 const useProvider = (theme: Theme) => {
