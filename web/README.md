@@ -5,6 +5,7 @@ React Components based on [material-ui](https://material-ui.com/)
 This lib is using material-ui for UI components and theming but it's more concise and optimized for forms with [reac-hook-form](https://react-hook-form.com/).
 
 Moreover all components are based on Grid container.
+
 I choosed to include material-ui for ui, react-hook-form for forms, yup for schema validation, react-router-url form routing and using all of them together with best-practices.
 
 # Install
@@ -18,17 +19,17 @@ yarn add react-mui-kit
 use the context provider for theming and hooks.
 
 ```jsx
-import { ReactKitProvider, Theme } from 'react-mui-kit';
+import { ReactKitProvider, Theme } from "react-mui-kit";
 
 const theme: Theme = {
   palette: {
     primary: {
-      main: '#81c784'
+      main: "#81c784",
     },
     secondary: {
-      main: '#e57373'
-    }
-  }
+      main: "#e57373",
+    },
+  },
 };
 
 function App() {
@@ -49,23 +50,23 @@ Theme is use the material-ui [theme](https://material-ui.com/customization/themi
 Fore routing I use [react-router-url](https://github.com/simonboisset/react-router-url/tree/main/react-router-url)
 
 ```jsx
-import { PageRouter, Text, Redirect } from 'react-mui-kit';
+import { PageRouter, Text, Redirect } from "react-mui-kit";
 
 <PageRouter
   header={<Header />}
   drawer={<Drawer />}
   auth={auth}
   routes={[
-    { path: '/account', protected: true, component: <Acount /> },
+    { path: "/account", protected: true, component: <Acount /> },
     {
-      path: '/',
+      path: "/",
       component: <Redirect to="/home" />,
       routes: [
-        { path: '/home', component: <Home /> },
-        { path: '/aboutus', component: <About /> },
-        { path: '/contact', component: <Contact /> }
-      ]
-    }
+        { path: "/home", component: <Home /> },
+        { path: "/aboutus", component: <About /> },
+        { path: "/contact", component: <Contact /> },
+      ],
+    },
   ]}
 />;
 ```
@@ -149,13 +150,13 @@ export const FormPage = () => {
 # Modal
 
 ```jsx
-import { Button, Container, Modal, Text, useForm, useModalURL } from 'react-mui-kit';
+import { Button, Container, Modal, Text, useForm, useModalURL } from "react-mui-kit";
 
 export const ModalPage = () => {
   // Use this to use context
-  const { open, openModal, closeModal } = useModal('form-modal');
+  const { open, openModal, closeModal } = useModal("form-modal");
   // Or this to use url
-  const { open, openModal, closeModal } = useModalURL('/modal/open');
+  const { open, openModal, closeModal } = useModalURL("/modal/open");
   const methods = useForm(FormSchema);
 
   return (
