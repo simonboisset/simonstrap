@@ -1,23 +1,15 @@
 {
   "name": "react-mui-kit",
+  "author": "Simon Boisset",
   "version": "0.2.26",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
     "build": "tsdx build",
     "up": "yarn upgrade-interactive --latest",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -26,51 +18,15 @@
     "write-example": "yarn prettier --write ./example/src && cd example && yarn write && cd ..",
     "check": "yarn prettier --check ./src"
   },
-  "peerDependencies": {
-    "react": ">=16"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn write"
-    }
-  },
-  "prettier": {
-    "singleQuote": true,
-    "tabWidth": 2,
-    "printWidth": 120
-  },
-  "author": "Simon Boisset",
-  "module": "dist/react-mui-kit.esm.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/simonboisset/react-mui-kit",
-    "directory": "react-mui-kit"
-  },
-  "bugs": {
-    "url": "https://github.com/simonboisset/react-mui-kit/issues"
-  },
-  "homepage": "https://github.com/simonboisset/react-mui-kit/tree/master/packages/react-mui-kit",
-  "size-limit": [
-    {
-      "path": "dist/react-mui-kit.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/react-mui-kit.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@size-limit/preset-small-lib": "^4.10.2",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "babel-loader": "^8.2.2",
-    "husky": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "size-limit": "^4.10.2",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
     "typescript": "^4.2.4"
@@ -81,7 +37,31 @@
     "@material-ui/pickers": "^3.3.10",
     "ajv": "^8.1.0",
     "dayjs": "^1.10.4",
-    "react-router-url": "^0.5.6"
+    "react-router-url": "^0.6.1"
   },
-  "gitHead": "69592d3d6c5dd4e04440f0281917032a47c861a3"
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "printWidth": 120
+  },
+  "module": "dist/react-mui-kit.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonboisset/react-mui-kit",
+    "directory": "react-mui-kit"
+  },
+  "bugs": {
+    "url": "https://github.com/simonboisset/react-mui-kit/issues"
+  },
+  "homepage": "https://github.com/simonboisset/react-mui-kit/tree/master/react-mui-kit"
 }

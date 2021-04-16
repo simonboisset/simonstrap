@@ -2,7 +2,21 @@
   "name": "react-mui-kit-website",
   "version": "0.2.26",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "up": "yarn upgrade-interactive --latest",
+    "build": "react-scripts build",
+    "type-check": "tsc --noEmit"
+  },
   "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-mui-kit": "^0.2.26",
+    "web-vitals": "^1.1.1"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.2",
@@ -10,22 +24,10 @@
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-mui-kit": "^0.2.26",
     "react-scripts": "4.0.3",
-    "typescript": "^4.2.4",
-    "web-vitals": "^1.1.1"
+    "typescript": "^4.2.4"
   },
   "homepage": "https://simonboisset.github.io/react-mui-kit/",
-  "scripts": {
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "up": "yarn upgrade-interactive --latest",
-    "deploy": "react-scripts build",
-    "type-check": "tsc --noEmit"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -48,8 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^3.1.0"
   }
 }

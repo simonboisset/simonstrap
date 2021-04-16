@@ -1,31 +1,137 @@
-name: CD Master branch
+name: CD Main
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
-  build:
+  publish-major-react-mui-kit:
+    if: contains(github.event.head_commit.message, '[major]')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout main
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - uses: marceloprado/has-changed-path@master
+        id: changed-mui-kit
+        with:
+          paths: react-mui-kit
       - name: Use Node
+        if: steps.changed-mui-kit.outputs.changed == 'true'
         uses: actions/setup-node@v1
         with:
-          node-version: "14"
+          node-version: '14'
           registry-url: https://registry.npmjs.org/
-      - name: Publish New Version
+      - name: Publish New Major Version
+        if: steps.changed-mui-kit.outputs.changed == 'true'
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: |
           git config --local user.email "simonboisset.dev@gmail.com"
           git config --local user.name "simonboisset"
+          cd react-mui-kit
           yarn
-          lerna run build
-          lerna publish patch --yes --no-verify-access
-          lerna run deploy
+          yarn version --new-version major --message "react-mui-kit v%s"
+          yarn build
+          yarn publish
+          cd ..
+          git push
+  publish-minor-react-mui-kit:
+    if: contains(github.event.head_commit.message, '[minor]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - uses: marceloprado/has-changed-path@master
+        id: changed-mui-kit
+        with:
+          paths: react-mui-kit
+      - name: Use Node
+        if: steps.changed-mui-kit.outputs.changed == 'true'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+          registry-url: https://registry.npmjs.org/
+      - name: Publish New Minor Version
+        if: steps.changed-mui-kit.outputs.changed == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          git config --local user.email "simonboisset.dev@gmail.com"
+          git config --local user.name "simonboisset"
+          cd react-mui-kit
+          yarn
+          yarn version --new-version minor --message "react-mui-kit v%s"
+          yarn build
+          yarn publish
+          cd ..
+          git push
+  publish-patch-react-mui-kit:
+    if: ${{!contains(github.event.head_commit.message, '[major]') && !contains(github.event.head_commit.message, '[minor]')}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - uses: marceloprado/has-changed-path@master
+        id: changed-mui-kit
+        with:
+          paths: react-mui-kit
+      - name: Use Node
+        if: steps.changed-mui-kit.outputs.changed == 'true'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+          registry-url: https://registry.npmjs.org/
+      - name: Publish New Patch Version
+        if: steps.changed-mui-kit.outputs.changed == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          git config --local user.email "simonboisset.dev@gmail.com"
+          git config --local user.name "simonboisset"
+          cd react-mui-kit
+          yarn
+          yarn version --new-version patch --message "react-mui-kit v%s"
+          yarn build
+          yarn publish
+          cd ..
+          git push
+  publish-web:
+    if: ${{ !failure() }}
+    needs: ['publish-patch-react-mui-kit','publish-minor-react-mui-kit','publish-major-react-mui-kit']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
+      - uses: marceloprado/has-changed-path@master
+        id: changed-web
+        with:
+          paths: web
+      - name: Use Node
+        if: steps.changed-web.outputs.changed == 'true'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+          registry-url: https://registry.npmjs.org/
+      - name: Publish New Patch Version
+        if: steps.changed-web.outputs.changed == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          git config --local user.email "simonboisset.dev@gmail.com"
+          git config --local user.name "simonboisset"
+          cd web
+          yarn
+          yarn add react-mui-kit
+          yarn version --new-version patch --message "react-mui-kit v%s"
+          yarn build
+          cd ..
           rm -Rf docs
-          mv ./packages/web/build ./docs
-          git add .
-          git commit -a -m "Publish Website"
-          git push origin master
+          mv ./web/build ./docs
+          git push
