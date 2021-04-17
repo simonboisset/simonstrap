@@ -76,7 +76,7 @@ type ContextType<T = any, I = T[keyof T]> = {
 
 const FormContext = React.createContext({});
 
-type FormProps<T> = { children: JSX.Element; onSubmit: (data: any) => void; schema: Schema<T> };
+type FormProps<T> = { children: JSX.Element; onSubmit: (data: Partial<T>) => void; schema: Schema<T> };
 
 export function Form<T>({ children, onSubmit, schema }: FormProps<T>) {
   const value = useFormProvider<T>(schema);
