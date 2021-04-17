@@ -1,8 +1,10 @@
 import Ajv, { ErrorObject, ValidateFunction } from 'ajv';
+import addFormats from 'ajv-formats';
 import React, { useContext, useMemo, useState } from 'react';
 import { Schema } from '../types/Schema';
 
 const ajv = new Ajv();
+addFormats(ajv);
 ajv.addFormat('date', (date: string) => {
   return !isNaN(Date.parse(date));
 });
