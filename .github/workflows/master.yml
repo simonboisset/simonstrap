@@ -135,4 +135,5 @@ jobs:
           cd ..
           rm -Rf docs
           mv ./web/build ./docs
+          git commit -a -m "Publish New Website version"
           git push
