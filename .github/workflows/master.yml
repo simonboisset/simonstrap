@@ -126,6 +126,7 @@ jobs:
         run: |
           git config --local user.email "simonboisset.dev@gmail.com"
           git config --local user.name "simonboisset"
+          git pull origin master
           cd web
           yarn
           yarn add react-mui-kit
