@@ -13,6 +13,7 @@ export {
   DialogTitle,
   Divider,
   LinearProgress,
+  makeStyles,
   Snackbar,
   Tab,
   Tabs
