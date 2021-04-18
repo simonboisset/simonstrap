@@ -1,4 +1,4 @@
-import { TextField } from '@material-ui/core';
+import { InputAdornment, TextField } from '@material-ui/core';
 import React from 'react';
 import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
@@ -7,9 +7,11 @@ type InputTextProps = {
   name: string;
   label?: string;
   type?: 'password' | 'number';
+  endAdornment: React.ReactNode;
+  startAdornment: React.ReactNode;
 } & GridItemProps;
 
-export const InputText = ({ name, label, type, ...rest }: InputTextProps) => {
+export const InputText = ({ name, label, type, startAdornment, endAdornment, ...rest }: InputTextProps) => {
   const { getInputValue, onInputChange, getInputError } = useForm<any>();
   const value = getInputValue(name) || '';
   const onChange = onInputChange(name);
@@ -25,6 +27,10 @@ export const InputText = ({ name, label, type, ...rest }: InputTextProps) => {
         type={type === 'number' ? undefined : type}
         error={!!errors}
         helperText={errors}
+        InputProps={{
+          startAdornment: startAdornment ? <InputAdornment position="start">{startAdornment}</InputAdornment> : null,
+          endAdornment: endAdornment ? <InputAdornment position="end">{endAdornment}</InputAdornment> : null
+        }}
       />
     </GridItem>
   );
