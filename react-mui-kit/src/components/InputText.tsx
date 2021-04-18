@@ -7,8 +7,8 @@ type InputTextProps = {
   name: string;
   label?: string;
   type?: 'password' | 'number';
-  endAdornment: React.ReactNode;
-  startAdornment: React.ReactNode;
+  endAdornment?: React.ReactNode;
+  startAdornment?: React.ReactNode;
 } & GridItemProps;
 
 export const InputText = ({ name, label, type, startAdornment, endAdornment, ...rest }: InputTextProps) => {
