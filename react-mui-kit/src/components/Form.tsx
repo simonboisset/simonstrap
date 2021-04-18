@@ -3,7 +3,7 @@ import addFormats from 'ajv-formats';
 import React, { useContext, useMemo, useState } from 'react';
 import { Schema } from '../types/Schema';
 
-const ajv = new Ajv();
+const ajv = new Ajv({ $data: true });
 addFormats(ajv);
 ajv.addFormat('date', (date: string) => {
   return !isNaN(Date.parse(date));
@@ -76,7 +76,7 @@ type ContextType<T = any, I = T[keyof T]> = {
 
 const FormContext = React.createContext({});
 
-type FormProps<T> = { children: JSX.Element; onSubmit: (data: Partial<T>) => void; schema: Schema<T> };
+type FormProps<T> = { children: JSX.Element; onSubmit: (data: T) => void; schema: Schema<T> };
 
 export function Form<T>({ children, onSubmit, schema }: FormProps<T>) {
   const value = useFormProvider<T>(schema);
