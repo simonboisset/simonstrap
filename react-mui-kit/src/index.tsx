@@ -19,7 +19,7 @@ export {
   Tabs
 } from '@material-ui/core';
 export { history, Redirect, Router, useURL } from 'react-router-url';
-export { default as Yup } from 'yup';
+export * from 'yup';
 export * from './components/AppBar';
 export * from './components/Button';
 export * from './components/Container';
