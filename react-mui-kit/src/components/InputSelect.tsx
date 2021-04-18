@@ -29,7 +29,7 @@ export const InputSelect = ({ name, label, items, ...rest }: InputSelectProps) =
             </MenuItem>
           ))}
         </Select>
-        <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+        <FormHelperText error={!!errors}>{errors}</FormHelperText>
       </FormControl>
     </GridItem>
   );

@@ -46,7 +46,7 @@ export function InputSwitchList<T>({ name, label, items, direction, ...rest }: I
           ))}
         </div>
 
-        <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+        <FormHelperText error={!!errors}>{errors}</FormHelperText>
       </FormControl>
     </GridItem>
   );

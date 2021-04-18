@@ -24,7 +24,7 @@ export const InputText = ({ name, label, type, ...rest }: InputTextProps) => {
         onChange={e => onChange(type === 'number' ? Number(e.target.value) : e.target.value)}
         type={type === 'number' ? undefined : type}
         error={!!errors}
-        helperText={errors?.message}
+        helperText={errors}
       />
     </GridItem>
   );

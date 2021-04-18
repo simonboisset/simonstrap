@@ -1,3 +1,4 @@
+import Yup from 'yup';
 export {
   Avatar,
   Badge,
@@ -45,4 +46,4 @@ export * from './components/PageRouter';
 export * from './components/Paper';
 export * from './components/Text';
 export * from './components/ThemeProvider';
-export * from './types/Schema';
+export { Yup };

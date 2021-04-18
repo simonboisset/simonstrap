@@ -29,7 +29,7 @@ export function InputSlider<T>({ name, label, step, max = 100, min = 0, ...rest 
         min={min}
         max={max}
       />
-      <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+      <FormHelperText error={!!errors}>{errors}</FormHelperText>
     </GridItem>
   );
 }

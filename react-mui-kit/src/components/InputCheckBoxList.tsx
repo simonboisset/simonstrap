@@ -40,7 +40,7 @@ export function InputCheckBoxList<T>({ name, label, items, direction, ...rest }:
           ))}
         </div>
 
-        <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+        <FormHelperText error={!!errors}>{errors}</FormHelperText>
       </FormControl>
     </GridItem>
   );

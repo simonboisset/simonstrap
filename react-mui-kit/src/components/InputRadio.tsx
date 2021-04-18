@@ -30,7 +30,7 @@ export const InputRadio = ({ name, label, items, direction, ...rest }: InputDate
             ))}
           </div>
         </RadioGroup>
-        <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+        <FormHelperText error={!!errors}>{errors}</FormHelperText>
       </FormControl>
     </GridItem>
   );

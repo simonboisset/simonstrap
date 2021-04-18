@@ -21,7 +21,7 @@ export function InputSwitch<T>({ name, label, ...rest }: InputSwitchProps<T>) {
           label={label}
         />
 
-        <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+        <FormHelperText error={!!errors}>{errors}</FormHelperText>
       </FormControl>
     </GridItem>
   );

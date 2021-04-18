@@ -21,7 +21,7 @@ export function InputCheckBox<T>({ name, label, ...rest }: InputCheckBoxProps<T>
           control={<Checkbox onChange={(_, checked) => onChange(checked)} checked={value} />}
           label={label}
         />
-        <FormHelperText error={!!errors}>{errors?.message}</FormHelperText>
+        <FormHelperText error={!!errors}>{errors}</FormHelperText>
       </FormControl>
     </GridItem>
   );
