@@ -78,7 +78,8 @@ export function useForm<T, I = unknown>() {
 
 function FormContainer<T>({ children, onSubmit }: { children: JSX.Element; onSubmit: (data: any) => void }) {
   const { valideForm, formValue } = useForm<T>();
-  const validateThenSubmit = () => {
+  const validateThenSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const isValid = valideForm(formValue);
     if (isValid) {
       onSubmit(formValue);
