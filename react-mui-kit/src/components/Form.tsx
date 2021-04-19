@@ -14,7 +14,10 @@ function useFormProvider<T>(schema: SchemaOf<T>) {
     valideForm(nextValue);
   };
   const getInputValue = (name: keyof T): Partial<T>[keyof T] | undefined => formValue[name];
-  const getInputError = (name: keyof T) => (formErrors ? formErrors.filter(err => err.path === name)[0].message : null);
+  const getInputError = (name: keyof T) =>
+    formErrors && formErrors.filter(err => err.path === name)[0]
+      ? formErrors.filter(err => err.path === name)[0].message
+      : null;
   const resetForm = () => {
     setFormValue(defaultValue);
   };
