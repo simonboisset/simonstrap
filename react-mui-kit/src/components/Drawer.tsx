@@ -1,14 +1,12 @@
 import { Drawer as DrawerUI, List, makeStyles, Toolbar } from '@material-ui/core';
 import React from 'react';
-import { Child } from './GridItem';
 import { Theme, useDrawer } from './MuiKitProvider';
 
 type DrawerProps = {
-  children?: Child;
   className?: string;
 };
 
-export const Drawer = ({ children, ...props }: DrawerProps) => {
+export const Drawer: React.FC<DrawerProps> = ({ children, ...props }) => {
   const { open, closeDrawer, variant, position, width, z } = useDrawer();
   const classes = useStyles({ width });
   return (

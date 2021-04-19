@@ -5,7 +5,7 @@ import { GridItem, GridItemProps } from './GridItem';
 
 type PaperProps = React.ComponentProps<typeof PaperUI> & GridItemProps;
 
-export const Paper = ({ xs, sm, lg, md, xl, className, ...props }: PaperProps) => {
+export const Paper: React.FC<PaperProps> = ({ xs, sm, lg, md, xl, className, ...props }) => {
   const classes = useFullWidthStyle();
   return (
     <GridItem xs={xs} sm={sm} lg={lg} md={md} xl={xl}>

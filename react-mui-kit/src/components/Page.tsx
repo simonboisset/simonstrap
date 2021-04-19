@@ -2,15 +2,12 @@ import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import { DrawerPosition, Theme, useDrawer } from './MuiKitProvider';
 
-export const Page = ({
-  header,
-  drawer,
-  children
-}: {
-  header?: JSX.Element;
-  drawer?: JSX.Element;
-  children: JSX.Element;
-}) => {
+type PageProps = {
+  header?: React.ReactNode;
+  drawer?: React.ReactNode;
+};
+
+export const Page: React.FC<PageProps> = ({ header, drawer, children }) => {
   const { width, variant, position, open } = useDrawer();
   const marge = variant === 'permanent' || (open && variant === 'persistent');
   const classes = useStyles({ width, marge, position });

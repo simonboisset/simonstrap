@@ -7,7 +7,7 @@ type ItemProps = Omit<ListItemProps, 'children' | 'button'> & {
   selected?: boolean;
 };
 
-export const Item = ({ children, icon, onClick, ...props }: ItemProps) => {
+export const Item: React.FC<ItemProps> = ({ children, icon, onClick, ...props }) => {
   const itemProps: any = props;
   if (!!onClick) {
     itemProps.button = true;

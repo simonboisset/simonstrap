@@ -8,7 +8,7 @@ type ItemLinkProps = {
   icon?: string;
 };
 
-export const ItemLink = ({ to, children, icon }: ItemLinkProps) => {
+export const ItemLink: React.FC<ItemLinkProps> = ({ to, children, icon }) => {
   const location = useURL();
   return (
     <Item icon={icon} onClick={() => history.push(to)} selected={location.path === to}>

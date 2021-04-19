@@ -9,7 +9,7 @@ type AppBarProps = {
   className?: string;
 };
 
-export const AppBar = ({ title, leftElements, rigthElements, className }: AppBarProps) => {
+export const AppBar: React.FC<AppBarProps> = ({ title, leftElements, rigthElements, className }) => {
   const { z, width, variant, position, open } = useDrawer();
 
   const marge = z === 'on' && (variant === 'permanent' || (open && variant === 'persistent'));

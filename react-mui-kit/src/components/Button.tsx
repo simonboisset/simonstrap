@@ -8,7 +8,7 @@ type ButtonProps = Omit<React.ComponentProps<typeof ButtonUI> & GridItemProps, '
   startIcon?: string;
 };
 
-export const Button = ({ xs, sm, lg, md, xl, startIcon, endIcon, ...props }: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = ({ xs, sm, lg, md, xl, startIcon, endIcon, ...props }) => {
   return (
     <GridItem {...{ xs, sm, lg, md, xl }}>
       <ButtonUI

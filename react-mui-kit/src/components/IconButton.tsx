@@ -3,7 +3,7 @@ import React from 'react';
 
 type IconButtonProps = React.ComponentProps<typeof IconButtonMUI>;
 
-export const IconButton = ({ children, ...props }: IconButtonProps) => {
+export const IconButton: React.FC<IconButtonProps> = ({ children, ...props }) => {
   return (
     <IconButtonMUI {...props}>
       <Icon>{children}</Icon>

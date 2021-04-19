@@ -14,7 +14,17 @@ type MenuPropsType = Omit<MenuProps, 'children' | 'open'> & {
   edge?: 'start' | 'end';
 };
 
-export function Menu({ onOpen, onClose, label, items, icon, anchorEl, edge, endIcon, ...props }: MenuPropsType) {
+export const Menu: React.FC<MenuPropsType> = ({
+  onOpen,
+  onClose,
+  label,
+  items,
+  icon,
+  anchorEl,
+  edge,
+  endIcon,
+  ...props
+}) => {
   const handleClickItem = (onClick: () => void) => {
     onClick();
     onClose();
@@ -40,7 +50,7 @@ export function Menu({ onOpen, onClose, label, items, icon, anchorEl, edge, endI
       </MenuUI>
     </>
   );
-}
+};
 export const useMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 

@@ -6,7 +6,7 @@ type ModalProps = Omit<DialogProps & DialogContentProps, 'onClose' | 'title'> & 
   onClose: () => void;
 };
 
-export const Modal = ({ children, onClose, maxWidth = 'md', scroll = 'body', ...props }: ModalProps) => {
+export const Modal: React.FC<ModalProps> = ({ children, onClose, maxWidth = 'md', scroll = 'body', ...props }) => {
   const classes = useStyles();
   return (
     <Dialog {...props} onClose={onClose} fullWidth maxWidth={maxWidth} scroll={scroll}>
@@ -22,6 +22,6 @@ const useStyles = makeStyles(({ spacing }) => ({
   fab: {
     position: 'absolute',
     right: spacing(1),
-    top: spacing(1),
-  },
+    top: spacing(1)
+  }
 }));

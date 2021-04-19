@@ -23,7 +23,6 @@ export * from './components/Menu';
 export * from './components/Modal';
 export * from './components/MuiKitProvider';
 export * from './components/Page';
-export * from './components/PageRouter';
 export * from './components/Paper';
 export * from './components/Text';
 export * from './components/ThemeProvider';
