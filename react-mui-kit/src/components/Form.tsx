@@ -31,7 +31,7 @@ function useFormProvider<T>(schema: SchemaOf<T>) {
     }
 
     setFormErrors(nextError);
-    const isValid = !!nextError;
+    const isValid = !nextError;
 
     return isValid;
   };
