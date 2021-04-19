@@ -1,4 +1,4 @@
-import { Grid, GridDirection } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React from 'react';
 
 export type GridSize = boolean | 2 | 'auto' | 1 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
@@ -11,7 +11,6 @@ export type GridItemProps = {
   xl?: GridSize;
   children?: Child;
   className?: string;
-  direction?: GridDirection;
 };
 
 export const GridItem = ({ xs = 12, children, ...props }: GridItemProps) => {

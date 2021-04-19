@@ -4,7 +4,7 @@ import { SchemaOf, ValidationError } from 'yup';
 function useFormProvider<T>(schema: SchemaOf<T>) {
   const defaultValue = useMemo(() => schema.getDefault() as T, []);
   const [formValue, setFormValue] = useState<T>(defaultValue);
-  const [formErrors, setFormErrors] = useState<{ [k: string]: ValidationError } | null>(null);
+  const [formErrors, setFormErrors] = useState<ValidationError | null>(null);
   const setInputValue = (name: keyof T, value: T[typeof name]) => {
     setFormValue({ ...formValue, [name]: value });
   };
@@ -14,17 +14,17 @@ function useFormProvider<T>(schema: SchemaOf<T>) {
     valideForm(nextValue);
   };
   const getInputValue = (name: keyof T): Partial<T>[keyof T] | undefined => formValue[name];
-  const getInputError = (name: string) => (formErrors ? formErrors[name].message : null);
+  const getInputError = () => (formErrors ? formErrors : null);
   const resetForm = () => {
     setFormValue(defaultValue);
   };
 
   const valideForm = (value: T) => {
-    let nextError: { [k: string]: ValidationError } | null = null;
+    let nextError: ValidationError | null = null;
     try {
       schema.validateSync(value, { abortEarly: false, stripUnknown: true });
     } catch (errors) {
-      nextError = errors;
+      nextError = errors as ValidationError;
     }
 
     setFormErrors(nextError);
