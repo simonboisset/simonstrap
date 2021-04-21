@@ -1,3 +1,4 @@
+import { Route as RouteURL } from 'react-router-url';
 export { Avatar, Badge, Card, CardActionArea, CardActions, CardContent, CardHeader, Chip, CircularProgress, Collapse, DialogActions, DialogContent, DialogTitle, Divider, LinearProgress, makeStyles, Snackbar, Tab, Table, TableBody, TableCell, TableHead, TableRow, Tabs } from '@material-ui/core';
 export { history, Redirect, useRouter, useURL } from 'react-router-url';
 export * as Yup from 'yup';
@@ -28,3 +29,4 @@ export * from './components/Text';
 export * from './components/ThemeProvider';
 export * from './hooks/useBoolean';
 
+export type Route<T extends string> = RouteURL<T>
