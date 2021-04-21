@@ -46,11 +46,6 @@
   "peerDependencies": {
     "react": ">=16"
   },
-  "prettier": {
-    "singleQuote": true,
-    "tabWidth": 2,
-    "printWidth": 120
-  },
   "module": "dist/react-mui-kit.esm.js",
   "repository": {
     "type": "git",
