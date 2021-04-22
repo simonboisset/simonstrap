@@ -20,7 +20,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({ value, onChange, error
     <GridItem {...rest}>
       <FormControl variant="outlined" fullWidth>
         <InputLabel>{label}</InputLabel>
-        <Select value={value} onChange={handleChange} label={label} error={!!error}>
+        <Select value={value || ''} onChange={handleChange} label={label} error={!!error}>
           <MenuItem value={undefined} disabled>
             {label}
           </MenuItem>

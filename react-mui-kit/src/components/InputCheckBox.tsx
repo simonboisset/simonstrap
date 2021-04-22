@@ -18,7 +18,7 @@ export const InputCheckBox: React.FC<InputCheckBoxProps> = ({ label, error, valu
   return (
     <GridItem {...rest}>
       <FormControl component="fieldset">
-        <FormControlLabel control={<Checkbox onChange={hadleChange} checked={value} />} label={label} />
+        <FormControlLabel control={<Checkbox onChange={hadleChange} checked={value || false} />} label={label} />
         <FormHelperText error={!!error}>{error}</FormHelperText>
       </FormControl>
     </GridItem>
