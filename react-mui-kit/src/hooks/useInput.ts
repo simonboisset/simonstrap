@@ -10,8 +10,8 @@ const getInputValue = <T>(name: keyof T, formValue: T, formErrors: ValidationErr
   return { value, error };
 };
 
-export const useInput = <T, G extends keyof T>(form: UseFormType<T>, name: G) => {
+export const useInput = <T>(form: UseFormType<T>, name: keyof T) => {
   const { value, error } = getInputValue(name, form.value, form.errors);
-  const onChange = (v: T[G]) => form.setFormValue({ ...form.value, [name]: v });
+  const onChange = (v: T[typeof name]) => form.setFormValue({ ...form.value, [name]: v });
   return { value, error, onChange };
 };
