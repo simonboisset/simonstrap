@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { UseFormType, useInput } from '../hooks/useInput';
+import { UseFormType } from '../hooks/useForm';
+import { useInput } from '../hooks/useInput';
 
 const FormContext = React.createContext({});
 
@@ -19,6 +20,6 @@ export function Form<T>({ children, form }: FormProps<T>) {
 
 export function useFormContext<T>(name: keyof T) {
   const form = useContext(FormContext) as UseFormType<T>;
-  const value = useInput(name, form);
+  const value = useInput(form, name);
   return value;
 }
