@@ -1,28 +1,19 @@
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@material-ui/core';
 import React from 'react';
-import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
+import { InputProps } from './InputCheckBox';
 
-type InputSwitchProps<T> = {
-  name: keyof T;
-  label?: string;
-} & GridItemProps;
-export function InputSwitch<T>({ name, label, ...rest }: InputSwitchProps<T>) {
-  const { getInputValue, onInputChange, getInputError } = useForm<T, boolean>();
-  const value = getInputValue(name) || false;
-  const onChange = onInputChange(name);
-  const errors = getInputError(name);
-
+type InputSwitchProps = InputProps<boolean> & GridItemProps;
+export const InputSwitch: React.FC<InputSwitchProps> = ({ value, onChange, error, label, ...rest }) => {
+  const hadleChange = (_: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    onChange(checked);
+  };
   return (
     <GridItem {...rest}>
       <FormControl component="fieldset">
-        <FormControlLabel
-          control={<Switch onChange={(_, checked) => onChange(checked)} checked={value} />}
-          label={label}
-        />
-
-        <FormHelperText error={!!errors}>{errors}</FormHelperText>
+        <FormControlLabel control={<Switch onChange={hadleChange} checked={value} />} label={label} />
+        <FormHelperText error={!!error}>{error}</FormHelperText>
       </FormControl>
     </GridItem>
   );
-}
+};

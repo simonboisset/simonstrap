@@ -1,27 +1,32 @@
 import { FormHelperText, Slider, Typography } from '@material-ui/core';
 import React from 'react';
-import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
+import { InputProps } from './InputCheckBox';
 
-export type ItemSliderType<T> = { name?: string; value: T; icon?: string };
-type InputSliderProps<T> = {
-  name: keyof T;
-  label?: string;
+type InputSliderProps = InputProps<number | number[]> & {
   min?: number;
   max?: number;
   step?: number;
 } & GridItemProps;
-export function InputSlider<T>({ name, label, step, max = 100, min = 0, ...rest }: InputSliderProps<T>) {
-  const { getInputValue, onInputChange, getInputError } = useForm<T, number | number[]>();
-  const value = getInputValue(name) || 0;
-  const onChange = onInputChange(name);
-  const errors = getInputError(name);
+export const InputSlider: React.FC<InputSliderProps> = ({
+  value,
+  onChange,
+  error,
+  label,
+  step,
+  max = 100,
+  min = 0,
+  ...rest
+}) => {
+  const handleChange = (_: React.ChangeEvent<{}>, value: number | number[]) => {
+    onChange(value);
+  };
   return (
     <GridItem {...rest}>
       <Typography gutterBottom>{label}</Typography>
       <Slider
         getAriaValueText={value => `${value}`}
-        onChange={(_, value) => onChange(value)}
+        onChange={handleChange}
         valueLabelDisplay="auto"
         step={step}
         marks={!!step}
@@ -29,7 +34,7 @@ export function InputSlider<T>({ name, label, step, max = 100, min = 0, ...rest 
         min={min}
         max={max}
       />
-      <FormHelperText error={!!errors}>{errors}</FormHelperText>
+      <FormHelperText error={!!error}>{error}</FormHelperText>
     </GridItem>
   );
-}
+};
