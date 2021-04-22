@@ -11,7 +11,7 @@ export const InputSwitch: React.FC<InputSwitchProps> = ({ value, onChange, error
   return (
     <GridItem {...rest}>
       <FormControl component="fieldset">
-        <FormControlLabel control={<Switch onChange={hadleChange} checked={value} />} label={label} />
+        <FormControlLabel control={<Switch onChange={hadleChange} checked={value || false} />} label={label} />
         <FormHelperText error={!!error}>{error}</FormHelperText>
       </FormControl>
     </GridItem>

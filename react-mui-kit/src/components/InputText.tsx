@@ -7,6 +7,7 @@ type InputTextProps = InputProps<string | number> & {
   type?: 'password' | 'number';
   endAdornment?: React.ReactNode;
   startAdornment?: React.ReactNode;
+  onChange: ((value: string | undefined) => void) | ((value: number | undefined) => void);
 } & GridItemProps;
 
 export const InputText: React.FC<InputTextProps> = ({
@@ -20,7 +21,7 @@ export const InputText: React.FC<InputTextProps> = ({
   ...rest
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    onChange(type === 'number' ? Number(e.target.value) : e.target.value);
+    onChange(type === 'number' ? Number(e.target.value) || undefined : e.target.value);
   };
 
   return (

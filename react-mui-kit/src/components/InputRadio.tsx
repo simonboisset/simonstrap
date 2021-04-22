@@ -20,7 +20,7 @@ export const InputRadio: React.FC<InputDateProps> = ({ value, onChange, error, l
     <GridItem {...rest}>
       <FormControl component="fieldset">
         <FormLabel component="legend">{label}</FormLabel>
-        <RadioGroup value={value} onChange={handleChange}>
+        <RadioGroup value={value || ''} onChange={handleChange}>
           <div className={classes.direction}>
             {items.map(item => (
               <FormControlLabel key={item.value} value={item.value} control={<Radio />} label={item.name} />

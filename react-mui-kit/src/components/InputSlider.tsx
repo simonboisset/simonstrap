@@ -30,7 +30,7 @@ export const InputSlider: React.FC<InputSliderProps> = ({
         valueLabelDisplay="auto"
         step={step}
         marks={!!step}
-        value={value}
+        value={value || 0}
         min={min}
         max={max}
       />

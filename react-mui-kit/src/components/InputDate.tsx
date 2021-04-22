@@ -23,7 +23,7 @@ export const InputDate: React.FC<InputDateProps> = ({ value, onChange, error, la
           label={label}
           format="DD/MM/YYYY"
           inputVariant="outlined"
-          value={value}
+          value={inputValue}
           onChange={handleChange}
           error={!!error}
         />
