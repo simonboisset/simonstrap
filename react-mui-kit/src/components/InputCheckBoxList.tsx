@@ -1,28 +1,31 @@
 import { Checkbox, FormControl, FormControlLabel, FormHelperText, FormLabel } from '@material-ui/core';
 import React from 'react';
 import { Direction, useDirectionStyle } from '../styles/direction';
-import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
+import { InputProps } from './InputCheckBox';
 
 export type ItemCheckBoxType = { label?: string; name?: string; icon?: string };
 
-type InputCheckBoxListProps<T> = {
-  name: keyof T;
-  label?: string;
+type InputCheckBoxListProps = InputProps<boolean[]> & {
   items: ItemCheckBoxType[];
   direction?: Direction;
 } & GridItemProps;
 
-export function InputCheckBoxList<T>({ name, label, items, direction, ...rest }: InputCheckBoxListProps<T>) {
+export const InputCheckBoxList: React.FC<InputCheckBoxListProps> = ({
+  label,
+  value,
+  onChange,
+  error,
+  items,
+  direction,
+  ...rest
+}) => {
   const classes = useDirectionStyle({ direction });
-  const { getInputValue, onInputChange, getInputError } = useForm<T, boolean[]>();
-  const values = getInputValue(name) || items.map(_ => false);
-  const value = items.map((item, i) => ({ ...item, value: values[i] }));
-  const onChange = onInputChange(name);
-  const errors = getInputError(name);
+
+  const values = items.map((item, i) => ({ ...item, value: value ? value[i] : false }));
 
   const itemChange = (index: number, itemValue: boolean, _: ItemCheckBoxType) => {
-    const nextValue = [...values];
+    const nextValue = !!value ? [...value] : items.map(_ => false);
     nextValue[index] = itemValue;
     onChange(nextValue);
   };
@@ -31,7 +34,7 @@ export function InputCheckBoxList<T>({ name, label, items, direction, ...rest }:
       <FormControl component="fieldset">
         <FormLabel component="legend">{label}</FormLabel>
         <div className={classes.direction}>
-          {value.map((item: ItemCheckBoxType & { value: boolean }, i: number) => (
+          {values.map((item: ItemCheckBoxType & { value: boolean }, i: number) => (
             <FormControlLabel
               key={i}
               control={<Checkbox onChange={(_, checked) => itemChange(i, checked, item)} checked={item.value} />}
@@ -39,9 +42,8 @@ export function InputCheckBoxList<T>({ name, label, items, direction, ...rest }:
             />
           ))}
         </div>
-
-        <FormHelperText error={!!errors}>{errors}</FormHelperText>
+        <FormHelperText error={!!error}>{error}</FormHelperText>
       </FormControl>
     </GridItem>
   );
-}
+};

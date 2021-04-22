@@ -1,24 +1,26 @@
 import { FormControl, FormHelperText, Icon, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React from 'react';
-import { useForm } from './Form';
 import { GridItem, GridItemProps } from './GridItem';
+import { InputProps } from './InputCheckBox';
 
-export type ItemSelectType<T> = { name?: string; value: T; icon?: string };
-type InputSelectProps = {
-  name: string;
-  label?: string;
-  items: ItemSelectType<string>[];
+export type ItemSelectType = { name?: string; value: string; icon?: string };
+type InputSelectProps = InputProps<string> & {
+  items: ItemSelectType[];
 } & GridItemProps;
-export const InputSelect = ({ name, label, items, ...rest }: InputSelectProps) => {
-  const { getInputValue, onInputChange, getInputError } = useForm<any>();
-  const value = getInputValue(name) || '';
-  const onChange = onInputChange(name);
-  const errors = getInputError(name);
+export const InputSelect: React.FC<InputSelectProps> = ({ value, onChange, error, label, items, ...rest }) => {
+  const handleChange = (
+    e: React.ChangeEvent<{
+      name?: string | undefined;
+      value: any;
+    }>
+  ) => {
+    onChange(e.target.value);
+  };
   return (
     <GridItem {...rest}>
       <FormControl variant="outlined" fullWidth>
         <InputLabel>{label}</InputLabel>
-        <Select value={value} onChange={e => onChange(e.target.value)} label={label} error={!!errors}>
+        <Select value={value} onChange={handleChange} label={label} error={!!error}>
           <MenuItem value={undefined} disabled>
             {label}
           </MenuItem>
@@ -29,7 +31,7 @@ export const InputSelect = ({ name, label, items, ...rest }: InputSelectProps) =
             </MenuItem>
           ))}
         </Select>
-        <FormHelperText error={!!errors}>{errors}</FormHelperText>
+        <FormHelperText error={!!error}>{error}</FormHelperText>
       </FormControl>
     </GridItem>
   );
