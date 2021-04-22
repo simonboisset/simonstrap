@@ -3,11 +3,11 @@ import React from 'react';
 import { GridItem, GridItemProps } from './GridItem';
 import { InputProps } from './InputCheckBox';
 
-type InputTextProps = InputProps<string | number> & {
+type InputTextProps = Omit<InputProps<string | number>, 'onChange'> & {
   type?: 'password' | 'number';
   endAdornment?: React.ReactNode;
   startAdornment?: React.ReactNode;
-  onChange: ((value: string | undefined) => void) | ((value: number | undefined) => void);
+  onChange: (value: any) => void;
 } & GridItemProps;
 
 export const InputText: React.FC<InputTextProps> = ({
