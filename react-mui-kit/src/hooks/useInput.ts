@@ -12,6 +12,6 @@ const getInputValue = <T, G extends keyof T>(formValue: T, name: G, formErrors: 
 
 export const useInput = <T, G extends keyof T>(form: UseFormType<T>, name: G) => {
   const { value, error } = getInputValue<T, G>(form.value, name, form.errors);
-  const onChange = (v: T[G]) => form.setFormValue({ ...form.value, [name]: v });
+  const onChange = (v: T[G] | undefined) => form.setFormValue({ ...form.value, [name]: v });
   return { value, error, onChange };
 };
