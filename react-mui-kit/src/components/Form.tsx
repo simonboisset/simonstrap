@@ -4,16 +4,16 @@ import { useInput } from '../hooks/useInput';
 
 const FormContext = React.createContext({});
 
-type FormProps<T> = { children: JSX.Element; form: UseFormType<T> };
+type FormProps<T> = { children: JSX.Element; form: UseFormType<T>; nested?: boolean };
 
-export function Form<T>({ children, form }: FormProps<T>) {
+export function Form<T>({ children, form, nested }: FormProps<T>) {
   const validateThenSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     form.submit();
   };
   return (
     <FormContext.Provider value={form}>
-      <form onSubmit={validateThenSubmit}>{children}</form>;
+      {nested ? children : <form onSubmit={validateThenSubmit}>{children}</form>}
     </FormContext.Provider>
   );
 }
