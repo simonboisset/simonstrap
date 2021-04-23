@@ -18,8 +18,8 @@ export function Form<T>({ children, form, nested }: FormProps<T>) {
   );
 }
 
-export function useFormContext<T>(name: keyof T) {
+export function useFormContext<T, G extends keyof T = keyof T>(name: G) {
   const form = useContext(FormContext) as UseFormType<T>;
-  const value = useInput(form, name);
+  const value = useInput<T, G>(form, name);
   return value;
 }
