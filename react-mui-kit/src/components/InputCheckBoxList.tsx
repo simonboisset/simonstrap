@@ -1,8 +1,8 @@
 import { Checkbox, FormControl, FormControlLabel, FormHelperText, FormLabel } from '@material-ui/core';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { Direction, useDirectionStyle } from '../styles/direction';
 import { GridItem, GridItemProps } from './GridItem';
-import { InputProps } from './InputCheckBox';
 
 export type ItemCheckBoxType = { label?: string; name?: string; icon?: string };
 

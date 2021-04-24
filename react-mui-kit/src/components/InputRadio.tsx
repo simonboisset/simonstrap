@@ -1,8 +1,8 @@
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from '@material-ui/core';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { Direction, useDirectionStyle } from '../styles/direction';
 import { GridItem, GridItemProps } from './GridItem';
-import { InputProps } from './InputCheckBox';
 
 export type ItemRadioType = { name?: string; value: string; icon?: string };
 

@@ -1,7 +1,7 @@
 import { FormControl, FormHelperText, Icon, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
-import { InputProps } from './InputCheckBox';
 
 export type ItemSelectType = { name?: string; value: string; icon?: string };
 type InputSelectProps = InputProps<string> & {

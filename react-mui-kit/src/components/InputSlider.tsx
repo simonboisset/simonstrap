@@ -1,7 +1,7 @@
 import { FormHelperText, Slider, Typography } from '@material-ui/core';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
-import { InputProps } from './InputCheckBox';
 
 type InputSliderProps = InputProps<number | number[]> & {
   min?: number;
