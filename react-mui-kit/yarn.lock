@@ -5101,10 +5101,10 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-hook-input@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/react-hook-input/-/react-hook-input-0.2.4.tgz#0c1f38f3fd38bfa373c7ad9855ea561121b49cff"
-  integrity sha512-DYydpyZVQCcXuv4xcPlTbIw1V2ZKq5oOX1BDV/2LY16qJT2BXqmyt23xqzfP8JqYhcUDaKjgiwwqcJJeh1LMXQ==
+react-hook-input@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/react-hook-input/-/react-hook-input-0.2.5.tgz#593e25d0d5c90d86801a8cd3e7366eaf02f63128"
+  integrity sha512-2BDGmEYxk80ishlJvtGYqepUCbcYkdev9XoEJ2NgczsHt39Q5wkAeHdt2bB9QtUmRFeejCyEdF7Lv4/VVu6NOg==
 
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
