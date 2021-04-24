@@ -2,8 +2,8 @@ import DayjsUtils from '@date-io/dayjs';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
-import { InputProps } from './InputCheckBox';
 
 export type ItemDateType<T> = { name?: string; value: T; icon?: string };
 

@@ -1,7 +1,7 @@
 import { InputAdornment, TextField } from '@material-ui/core';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
-import { InputProps } from './InputCheckBox';
 
 type InputTextProps = Omit<InputProps<string | number>, 'onChange'> & {
   type?: 'password' | 'number';

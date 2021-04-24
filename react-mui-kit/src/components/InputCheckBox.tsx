@@ -1,13 +1,7 @@
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@material-ui/core';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
-
-export type InputProps<T> = {
-  value: T | undefined;
-  error: string | null;
-  onChange: (value: T | undefined) => void;
-  label?: string;
-};
 
 type InputCheckBoxProps = InputProps<boolean> & GridItemProps;
 

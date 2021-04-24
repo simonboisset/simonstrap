@@ -1,7 +1,7 @@
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@material-ui/core';
 import React from 'react';
+import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
-import { InputProps } from './InputCheckBox';
 
 type InputSwitchProps = InputProps<boolean> & GridItemProps;
 export const InputSwitch: React.FC<InputSwitchProps> = ({ value, onChange, error, label, ...rest }) => {
