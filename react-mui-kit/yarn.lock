@@ -5101,10 +5101,10 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-hook-input@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/react-hook-input/-/react-hook-input-0.2.3.tgz#6047fff45f169fce186c160bbf0a5ed8189fdabb"
-  integrity sha512-MjJJcaG8nRRyDg04r5yiHYjl3qvBlsWElO+MTcSV8mGu4Vk2kE9sXpSa3TBTkZ4WJ7XejvrmsuiTXhJ01ZwFww==
+react-hook-input@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/react-hook-input/-/react-hook-input-0.2.4.tgz#0c1f38f3fd38bfa373c7ad9855ea561121b49cff"
+  integrity sha512-DYydpyZVQCcXuv4xcPlTbIw1V2ZKq5oOX1BDV/2LY16qJT2BXqmyt23xqzfP8JqYhcUDaKjgiwwqcJJeh1LMXQ==
 
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
@@ -5116,10 +5116,10 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-router-url@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-router-url/-/react-router-url-0.7.0.tgz#fb1d34afef34f380d8332d257cde335c45c1f10b"
-  integrity sha512-rb1m/uTEWA1CVPb0vD+oXODMFNvhNbrLiIKa0I6dqvBqEHVi69vld6KByFbvE+pOJmzZe4aaKiGHz4rcyQrtRw==
+react-router-url@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/react-router-url/-/react-router-url-0.7.1.tgz#34e6674118504d3a7dee7d3d713cfc1b65007c05"
+  integrity sha512-pq/z3RloHXHf3VzedXqIUJB4LYAOH+sd/9y8djV/ReHfc8RsYQxD191LM251l51c/jMjLLW2VCAfVtY31PGZuQ==
 
 react-transition-group@^4.0.0, react-transition-group@^4.4.0:
   version "4.4.1"
