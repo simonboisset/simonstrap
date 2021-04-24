@@ -7,6 +7,7 @@ import { GridItem, GridItemProps } from './GridItem';
 export type ItemRadioType = { name?: string; value: string; icon?: string };
 
 type InputDateProps = InputProps<string> & {
+  label?: string;
   items: ItemRadioType[];
   direction?: Direction;
 } & GridItemProps;

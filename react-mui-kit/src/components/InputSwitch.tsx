@@ -3,7 +3,7 @@ import React from 'react';
 import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
 
-type InputSwitchProps = InputProps<boolean> & GridItemProps;
+type InputSwitchProps = InputProps<boolean> & GridItemProps & { label?: string };
 export const InputSwitch: React.FC<InputSwitchProps> = ({ value, onChange, error, label, ...rest }) => {
   const hadleChange = (_: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
     onChange(checked);

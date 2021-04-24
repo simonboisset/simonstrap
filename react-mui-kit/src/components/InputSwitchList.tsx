@@ -14,6 +14,7 @@ export type renderControlerProps = {
   ref: React.MutableRefObject<any>;
 };
 type InputSwitchListProps = InputProps<boolean[]> & {
+  label?: string;
   items: ItemSwitchType[];
   direction?: Direction;
 } & GridItemProps;

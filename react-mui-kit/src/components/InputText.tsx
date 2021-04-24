@@ -4,6 +4,7 @@ import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
 
 type InputTextProps = Omit<InputProps<string | number>, 'onChange'> & {
+  label?: string;
   type?: 'password' | 'number';
   endAdornment?: React.ReactNode;
   startAdornment?: React.ReactNode;

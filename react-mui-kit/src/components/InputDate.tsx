@@ -7,7 +7,7 @@ import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemDateType<T> = { name?: string; value: T; icon?: string };
 
-type InputDateProps = InputProps<Date> & GridItemProps;
+type InputDateProps = InputProps<Date | undefined> & GridItemProps & { label?: string };
 
 export const InputDate: React.FC<InputDateProps> = ({ value, onChange, error, label, ...rest }) => {
   const inputValue = value ? value.toISOString() : null;

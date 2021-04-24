@@ -4,9 +4,7 @@ import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
 
 export type ItemSelectType = { name?: string; value: string; icon?: string };
-type InputSelectProps = InputProps<string> & {
-  items: ItemSelectType[];
-} & GridItemProps;
+type InputSelectProps = InputProps<string> & { label?: string; items: ItemSelectType[] } & GridItemProps;
 export const InputSelect: React.FC<InputSelectProps> = ({ value, onChange, error, label, items, ...rest }) => {
   const handleChange = (
     e: React.ChangeEvent<{

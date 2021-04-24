@@ -4,6 +4,7 @@ import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
 
 type InputSliderProps = InputProps<number | number[]> & {
+  label?: string;
   min?: number;
   max?: number;
   step?: number;

@@ -7,6 +7,7 @@ import { GridItem, GridItemProps } from './GridItem';
 export type ItemCheckBoxType = { label?: string; name?: string; icon?: string };
 
 type InputCheckBoxListProps = InputProps<boolean[]> & {
+  label?: string;
   items: ItemCheckBoxType[];
   direction?: Direction;
 } & GridItemProps;
