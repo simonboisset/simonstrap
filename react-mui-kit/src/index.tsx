@@ -1,7 +1,7 @@
-import { InputProps as InputPropsType, UseFormType as UseFormTypeHook } from 'react-hook-input';
-import { Route as RouteURL } from 'react-router-url';
+import { InputProps, UseFormType } from 'react-hook-input';
+import { Route } from 'react-router-url';
 export { Avatar, Badge, Card, CardActionArea, CardActions, CardContent, CardHeader, Chip, CircularProgress, Collapse, DialogActions, DialogContent, DialogTitle, Divider, LinearProgress, makeStyles, Snackbar, Tab, Table, TableBody, TableCell, TableHead, TableRow, Tabs } from '@material-ui/core';
-export { Form, useForm, useFormContext, useInput, useNestedForm } from 'react-hook-input';
+export { Form, useForm, useFormContext, useNestedForm } from 'react-hook-input';
 export { history, Redirect, useRouter, useURL } from 'react-router-url';
 export * as Yup from 'yup';
 export * from './components/AppBar';
@@ -29,8 +29,5 @@ export * from './components/Paper';
 export * from './components/Text';
 export * from './components/ThemeProvider';
 export * from './hooks/useBoolean';
+export type { InputProps, UseFormType, Route };
 
-export type Route<T extends string> = RouteURL<T>
-
-export interface InputProps<T> extends InputPropsType<T>{}
-export interface UseFormType<T>  extends UseFormTypeHook<T>{}
