@@ -3,13 +3,16 @@ import React from 'react';
 import { InputProps } from 'react-hook-input';
 import { GridItem, GridItemProps } from './GridItem';
 
+type TextFieldProps = React.ComponentProps<typeof TextField>;
+
 type InputTextProps = Omit<InputProps<string | number>, 'onChange'> & {
   label?: string;
   type?: 'password' | 'number';
   endAdornment?: React.ReactNode;
   startAdornment?: React.ReactNode;
   onChange: (value: any) => void;
-} & GridItemProps;
+} & GridItemProps &
+  Pick<TextFieldProps, 'disabled'>;
 
 export const InputText: React.FC<InputTextProps> = ({
   value,
@@ -17,6 +20,7 @@ export const InputText: React.FC<InputTextProps> = ({
   error,
   label,
   type,
+  disabled,
   startAdornment,
   endAdornment,
   ...rest
@@ -31,6 +35,7 @@ export const InputText: React.FC<InputTextProps> = ({
         variant="outlined"
         label={label}
         fullWidth
+        disabled={disabled}
         value={value}
         onChange={handleChange}
         type={type === 'number' ? undefined : type}
