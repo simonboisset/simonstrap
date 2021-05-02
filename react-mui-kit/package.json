@@ -16,6 +16,11 @@
     "write": "yarn prettier --write ./src",
     "check": "yarn prettier --check ./src"
   },
+  "prettier": {
+    "singleQuote": true,
+    "tabWidth": 2,
+    "printWidth": 120
+  },
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@types/react": "^17.0.3",
