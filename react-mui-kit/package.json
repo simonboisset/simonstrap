@@ -1,7 +1,7 @@
 {
   "name": "react-mui-kit",
   "author": "Simon Boisset",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
